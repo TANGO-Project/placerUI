@@ -1,0 +1,329 @@
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('libs/fontawesome-webfont.woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Material Design Icons';
+    src: url('libs/materialdesignicons-webfont.woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-color: #f6f6f6;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1em;
+    color: #1a1a1a;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+a img {
+    border: none;
+    outline: none;
+}
+
+#top {
+    position: fixed;
+    z-index: 200;
+    width: 100%;
+    height: 74px;
+    background: #1a1a1a url(assets/header300.svg);
+}
+
+#topRight {
+    display: block;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    color: white;
+    text-align: right;
+}
+
+#version {
+    display: block;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    color: #FFFFFF;
+}
+
+#siteLicense {
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: white;
+    text-align: right;
+    font-style: italic;
+}
+
+a:visited {
+    color: blue;
+}
+
+#logo {
+    height: 60px;
+    display: block;
+    margin: auto;
+    padding: 7px;
+}
+
+#actions {
+    position: fixed;
+    top: 74px;
+    left: 0;
+    z-index: 5;
+}
+
+.actionButton {
+    display: block;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+#syntaxErrors {
+    background: rgba(255, 255, 255, 0.9);
+    position: fixed;
+    left: 50px;
+    top: 79px;
+    width: 346px;
+    height: 40px;
+    z-index: 11;
+    font-size: smaller;
+    white-space: pre;
+    overflow-wrap: normal;
+    overflow-x: hidden;
+    border:solid 1px #aaa;
+}
+
+#source {
+    position: fixed;
+    left: 50px;
+    top: 129px;
+    z-index: 10;
+}
+
+#handleWrapper {
+    position: fixed;
+    left: 50px; /*codemirror gutter is 30px*/
+    top: 129px;
+    /*clip: rect(0px,14px,14px,0px);*/
+
+    z-index: 9;
+}
+
+#handle {
+    position: relative;
+    background-color: #f6f6f6;
+    border: #aaa solid 1px;
+    cursor: se-resize;
+    text-align: center;
+    /*padding: 1px;*/
+}
+
+#diagramCanvas {
+    position: absolute;
+    left: 450px;
+    top: 79px;
+    z-index: 0;
+}
+
+#participantCanvas {
+    position: absolute;
+    left: 450px;
+    top: 100px;
+    z-index: 1;
+    opacity: 0.7;
+    display: none;
+}
+
+#interactionCanvasWrapper {
+    position: absolute;
+    left: 450px;
+    top: 79px;
+    z-index: 2;
+    padding-right: 20em;
+    padding-bottom: 20em;
+}
+
+.contextMenuPart {
+    white-space: nowrap;
+    z-index: 100;
+    position: absolute;
+    overflow: hidden;
+    border: 1px solid #a9a9a9;
+    font-family: sans-serif;
+    background: #FFF;
+    color: #333;
+    padding: 0;
+    margin: 0;
+}
+
+.contextMenuPart li {
+    white-space: nowrap;
+    padding: 5px 15px;
+    cursor: pointer;
+    list-style-type: none;
+}
+
+.contextSubMenuPart li:hover {
+    background-color: #b0dcea;
+}
+
+.contextSubMenuPart {
+    display: none;
+}
+
+.openSaveMenu {
+    display: none;
+    z-index: 100;
+    position: fixed;
+    overflow: hidden;
+    border-bottom: 1px solid #a9a9a9;
+    border-top: 1px solid #a9a9a9;
+    border-right: 1px solid #a9a9a9;
+    white-space: nowrap;
+    font-family: sans-serif;
+    background: #f6f6f6;
+    color: #333;
+    padding: 0;
+    margin: 0;
+}
+
+.openSaveMenu label {
+    font-weight: bold;
+    font-size: 0.8em;
+    color: #71bad7;
+}
+
+#localStorageSources {
+    background: #FFFFFF;
+}
+
+.openSaveMenu tr {
+    cursor: pointer;
+}
+
+.openSaveMenu tr:hover {
+    background-color: #b0dcea;
+}
+
+.openSaveMenu table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#cover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 300;
+    display: none;
+}
+
+.popupDialogInstructions {
+    position: absolute;
+    text-align: center;
+    width: 900px;
+    bottom: 0;
+}
+
+.bottomInstruction {
+    background-color: lightgray;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+#imageDiv {
+    padding: 20px;
+    text-align: center;
+}
+
+#copyrightNotice {
+    left: 10px;
+    position: fixed;
+    bottom: 10px;
+    z-index: 2;
+    font-size: 0.7em;
+}
+
+.popupDialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    border-radius: 20px;
+    background-color: #ffffff;
+    border: 2px solid #ffffff;
+    width: 900px;
+    height: 700px;
+    margin-top: -350px;
+    margin-left: -450px;
+    /*box-shadow: 10px 0 15px -4px #1a1a1a, -10px 0 15px -4px #1a1a1a;*/
+    z-index: 400;
+    display: none;
+}
+
+.popupDialogInner {
+    height: 600px;
+    margin: 10px;
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+.centerText {
+    text-align: center;
+}
+
+.instruction {
+    margin-bottom: 50px;
+}
+
+.negtopmargin {
+    margin-top: -50px;
+}
+
+.instructionsImage {
+    border: dashed thin #333333;
+    margin: 7px;
+    padding: 3px;
+    white-space: pre-line;
+    cursor: pointer;
+}
+
+.popupCloseIcon {
+    height: 25px;
+    width: 25px;
+    margin-left: -10px;
+    margin-top: -10px;
+}
+
+#shareRawUrl {
+    height: 150px;
+    width: 500px;
+}
+
+.infoFAQ {
+    font-weight: bold;
+}
+
+.infoHeadline {
+    font-size: 1.2em;
+}
+
+/* code mirror */
+.errors {
+    width: 0.8em;
+}
+
+.CodeMirror {
+    border: 1px solid #aaa;
+}

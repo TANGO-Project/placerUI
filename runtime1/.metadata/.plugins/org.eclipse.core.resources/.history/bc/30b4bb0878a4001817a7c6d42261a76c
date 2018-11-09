@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ASCII"?>
+<placer:HardwareModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:placer="http://www.example.org/placer" name="A">
+  <processingElements name="gez" hardwareModel="/"/>
+  <busses name="rz"/>
+  <busses name="ge">
+    <connections name="gre" connectionTo="//@processingElements.0" connectionFrom="//@busses.1"/>
+  </busses>
+</placer:HardwareModel>

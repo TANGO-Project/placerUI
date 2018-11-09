@@ -1,0 +1,399 @@
+package json;
+
+import placer.Global;
+import placer.MainPlacerOut;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import placer.impl.PlacerFactoryImpl;
+
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
+import javax.json.JsonReaderFactory;
+import javax.json.spi.*;
+import javax.json.stream.*;
+
+
+public class DataRecoveryOfPlacer {
+	
+	
+	/*
+	
+	
+	public static void main(String arg[]) throws FileNotFoundException, IOException, ParseException {
+        System.out.println("Placer Visu");        
+    
+        Object obj = new JSONParser().parse(new FileReader("aquascanOutSPE.json")); 
+        
+        // typecasting obj to JSONObject 
+        System.out.println("==================================");
+        JSONObject jo = (JSONObject) obj; 
+        System.out.println("==================================");
+        
+        // top level info
+        System.out.println("Info: "+jo.get("info"));
+
+        // finding elements
+        JSONArray t_mappings=(JSONArray)jo.get("mappings");
+        JSONObject mappings=(JSONObject)t_mappings.get(0);
+        System.out.println(mappings.get("hardwareName"));
+        JSONArray taskMapping=(JSONArray)mappings.get("taskMapping");
+        for(int i=0; i<taskMapping.size();i++) {
+            JSONObject tm=(JSONObject)taskMapping.get(i);
+            System.out.println(tm.get("processingElement"));
+            System.out.println(tm.get("task"));
+            System.out.println(tm.get("implementation"));
+            System.out.println(tm.get("start"));
+            System.out.println(tm.get("end"));
+            System.out.println("==================================");
+        }
+    }
+*/
+	
+	
+	protected static void dataRecovery(String saveDateFolder, Global global) {
+		//String pathPlacerOut = saveDateFolder + "\\placerOut.json";
+		String placerOut = "C:\\Users\\Utilisateur\\Desktop\\ObeoDesigner-Community\\placerOut.json";
+		File filePlacerOut = new File(placerOut);
+		System.out.println(filePlacerOut.getAbsolutePath());
+		
+		PlacerFactoryImpl placerFactory = (PlacerFactoryImpl) PlacerFactoryImpl.init();
+		MainPlacerOut mainPlacerOut = placerFactory.createMainPlacerOut();
+		/*if(global.getMainPlacerOut1() == null) {
+			mainPlacerOut = placerFactory.createMainPlacerOut();
+		}*/
+		global.setMainPlacerOut1(mainPlacerOut);
+		System.out.println("dx");
+		InputStream fileInputStream = null;
+		try {
+			fileInputStream = new FileInputStream(filePlacerOut);
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		System.out.println("dfghjk");
+		
+		JsonReader jsonReader = Json.createReader(fileInputStream);
+		JsonObject jsonObject = jsonReader.readObject();
+		
+		jsonReader.close();
+		try {
+			fileInputStream.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("ca marche");
+		mainPlacerOut.setJsonFormat(jsonObject.getString("jsonFormat"));
+		mainPlacerOut.setTimeUnit(jsonObject.getString("timeUnit"));
+		
+		
+		
+		
+		//JSONParser parser = new JSONParser();
+		
+		
+		/*try {
+			Object object = parser.parse(new FileReader(filePlacerOut));
+			JSONObject jsonObject = (JSONObject) object;
+			
+			/*
+			
+			PlacerFactoryImpl placerFactory = (PlacerFactoryImpl) PlacerFactoryImpl.init();
+			
+			MainPlacerOut mainPlacerOut = placerFactory.createMainPlacerOut();
+			
+			
+			/*mainPlacerOut.setJsonFormat(jsonObject.get("jsonFormat"));
+			mainPlacerOut.setTimeUnit(jsonObject.getString("timeUnit"));
+			mainPlacerOut.setDataUnit(jsonObject.getString("dataUnit"));
+			mainPlacerOut.setInfo(jsonObject.getString("info"));
+			System.out.println(mainPlacerOut.getDataUnit());
+			
+			global.getMainPlacerOut1().add(mainPlacerOut);
+		} catch (FileNotFoundException e){
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} catch (IOException e){
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}*/
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/*
+		Object obj;
+		try {
+			obj = new JSONParser().parse(new FileReader(filePlacerOut));
+			System.out.println("==================================");
+		    JSONObject jo = (JSONObject) obj; 
+		    System.out.println("==================================");
+		    System.out.println("Info: "+jo.get("info"));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	        
+	        // typecasting obj to JSONObject 
+	       
+	        
+	        // top level info
+	       
+
+	        
+	        */
+	        
+	        
+	        
+	        
+	       /* // finding elements
+	        JSONArray t_mappings=(JSONArray)jo.get("mappings");
+	        JSONObject mappings=(JSONObject)t_mappings.get(0);
+	        System.out.println(mappings.get("hardwareName"));
+	        JSONArray taskMapping=(JSONArray)mappings.get("taskMapping");
+	        for(int i=0; i<taskMapping.size();i++) {
+	            JSONObject tm=(JSONObject)taskMapping.get(i);
+	            System.out.println(tm.get("processingElement"));
+	            System.out.println(tm.get("task"));
+	            System.out.println(tm.get("implementation"));
+	            System.out.println(tm.get("start"));
+	            System.out.println(tm.get("end"));
+	            System.out.println("==================================");
+	        }*/
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/*
+		
+		
+		
+		InputStream fileInputStream = new FileInputStream(filePlacerOut);
+		
+		System.out.println("dfgh");
+		
+		fileInputStream.close();*/
+		
+		/*JsonReaderFactory factory = Json.createReaderFactory(null);
+		JsonReader jsonReader = factory.createReader(fileInputStream);*/
+		
+		/*
+		JsonReader jsonReader = Json.createReader(fileInputStream);
+		
+		
+		jsonReader.close();
+		System.err.println("948");
+		JsonObject jsonObject = jsonReader.readObject();
+		
+		System.out.println("dfg");
+		PlacerFactoryImpl placerFactory = (PlacerFactoryImpl) PlacerFactoryImpl.init();
+		
+		
+		MainPlacerOut mainPlacerOut = placerFactory.createMainPlacerOut();
+		mainPlacerOut.setJsonFormat(jsonObject.getString("jsonFormat"));
+		mainPlacerOut.setTimeUnit(jsonObject.getString("timeUnit"));
+		mainPlacerOut.setDataUnit(jsonObject.getString("dataUnit"));
+		mainPlacerOut.setInfo(jsonObject.getString("info"));
+		System.out.println(mainPlacerOut.getDataUnit());
+		
+		global.getMainPlacerOut1().add(mainPlacerOut);
+		
+		fileInputStream.close();
+		
+		*/
+		
+		
+		
+		
+		
+		/*
+		InputStream fis;
+		
+		try {
+			System.out.println("jkl");
+			
+			fis = new FileInputStream(pathPlacerOut);
+			System.out.println(fis.read());
+			
+			
+			/*JsonReaderFactory factory = Json.createReaderFactory(null);
+			JsonReader jsonReader = factory.createReader(fis);*/
+			
+			
+			/*JsonReader jsonReader = Json.createReader(fis);
+			
+			
+			jsonReader.close();
+			System.err.println("948");
+			JsonObject jsonObject = jsonReader.readObject();
+			
+			System.out.println("dfg");
+			PlacerFactoryImpl placerFactory = (PlacerFactoryImpl) PlacerFactoryImpl.init();
+			
+			
+			MainPlacerOut mainPlacerOut = placerFactory.createMainPlacerOut();
+			mainPlacerOut.setJsonFormat(jsonObject.getString("jsonFormat"));
+			mainPlacerOut.setTimeUnit(jsonObject.getString("timeUnit"));
+			mainPlacerOut.setDataUnit(jsonObject.getString("dataUnit"));
+			mainPlacerOut.setInfo(jsonObject.getString("info"));
+			System.out.println(mainPlacerOut.getDataUnit());
+			
+			global.getMainPlacerOut1().add(mainPlacerOut);
+			
+			fis.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}catch(Error e) {
+			System.out.println("ERROR");
+		}
+		
+		
+		System.out.println("gvbuink");
+		
+		
+		try {
+			Object obj = new JSONParser().parse(new FileReader(pathPlacerOut));
+		} catch (IOException | ParseException e) {
+			// TODO Auto-generated catch block
+			System.out.println("");
+			e.printStackTrace();
+		} 
+		catch(Error e) {
+			System.out.println("ERROR");
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		*/
+		
+		
+		
+		
+		/*Mapping mapping = placerFactory.createMapping();
+		
+		
+		mainPlacerOut.getMappings().add(mapping);
+		
+		System.out.println(mainPlacerOut.getMappings().size());*/
+		
+		
+		
+		
+		
+		
+		
+		/*
+        
+        // typecasting obj to JSONObject 
+        JSONObject jo = (JSONObject) obj; 
+          
+        // getting firstName and lastName 
+        String firstName = (String) jo.get("firstName"); 
+        String lastName = (String) jo.get("lastName"); 
+		
+		
+		
+		
+		
+		/*
+		//JsonReader jsonReader = Json.createReader(fis);
+		
+		try {
+			Object parser = new JSONParser().parse(new FileReader(pathPlacerOut));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		JSONParser jsonParser = new JSONParser();
+		
+		String jsonFormat = null;
+		
+		
+		
+		/*try {
+			Object obj = parser.parse(new FileReader(pathPlacerOut));
+			JSONObject jsonObject = (JSONObject) obj;
+			
+			jsonFormat = (String) jsonObject.get("jsonFormat");
+			System.out.println("ycgdicbdk");
+			
+			
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		System.out.println(jsonFormat);
+		
+		
+		
+		*/
+		
+		
+		
+		/*File fileIn = new File(pathPlacerOut);
+		Scanner in = null;
+		try {
+			in = new Scanner(fileIn);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		while(in.hasNextLine()) {
+			System.out.println(in.nextLine());
+			
+		}
+		in.close();
+		//String filePlacerOut = "placerOut.txt";
+		//System.out.println(pathPlacerOut);*/
+	}
+}

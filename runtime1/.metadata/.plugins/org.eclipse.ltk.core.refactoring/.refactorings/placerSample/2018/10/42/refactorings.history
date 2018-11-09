@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;placerSample/MyPlacer.placer&apos; to &apos;PlacerOut.placer&apos;" description="Rename resource &apos;MyPlacer.placer&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="MyPlacer.placer" name="PlacerOut.placer" stamp="1539851167120" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;placerSample/Project.placer&apos; to &apos;Creation.placer&apos;" description="Rename resource &apos;Project.placer&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Project.placer" name="Creation.placer" stamp="1539851183118" updateReferences="true"/>
+</session>

@@ -1,0 +1,160 @@
+4.7.1
+    - simpler start example diagram (the large example diagram is added to the instructions area instead)
+    - instructions and pointer for that syntax errors can be clicked to see where in the source the problem is
+
+4.7.0
+    - support for activation av participant time lines using keyword activate participantName and deactivate participantName
+    - support for adding additional space between entries using the space keyword (may be used together with activations to create a desired behavior)
+
+4.6.3
+    - bugfix: pressing minus when naming a diagram triggers entrySpacing to change
+    - bugfix: default font not defined on initial render
+
+4.6.2
+    - changed share url function to handle https origin
+
+4.6.1
+    - bugfix: creating fragments first in the diagram without specifying participants causes faulty rendering of fragment
+
+4.6.0
+    - support for changing over-single-participant notes/boxes/... into over-multiple-participants and back using drag and drop
+    - context menu split into categories
+    - selecting participant declaration in source text when selecting it in the diagram
+    - selecting erroneous lines in source text when clicking its error in the syntax error box
+    - scrolling window when a selected entry is moved outside of the window
+    - bugfix: clicking outside of entry being edited opens extra edit dialog
+
+4.5.0
+    - support for storing diagrams in the web browser local storage
+
+4.4.0
+    - support for displaying a participant overlay showing which line which participant belongs to in large diagrams
+
+4.3.0
+    - support for specifying font used in the diagram using the fontFamily keyword
+
+4.2.2
+    - checking for initialData before displaying default data in source textarea
+
+4.2.1
+    - bugfix: positioning of divider when no participants have been declared before it is incorrect
+
+4.2.0
+    - support for multiline participant names: participant "long\nname" as Alice
+
+4.1.0
+    - added instructions, see "?" icon on the top left
+    - made it easier to create self ref messages
+    - support for indentation of lines
+
+4.0.1
+    - made collision area wider when moving entries
+    - made edit box (when double clicking on entries) larger
+    - bugfix: clicking quickly on different items triggers double click operation
+
+4.0.0
+    - Text style support added for: bold, italic, small, big (using double space to create small text is removed and replaced with --small text--
+    - For messages, only areas covered with text now have white background
+
+3.7.0
+    - beta feature: load diagram from http server, any feedback on this API is highly appreciated
+        * must as usual be accessed by a browser that can run the javascript to render the diagram
+        * the http(s) server must answer with http header Access-Control-Allow-Origin: *
+        * the file must be text/plain
+        * option 1, generate diagram into edit mode: http://sequencediagram.org/index.html?initialData=https://myhttpserver.example.org/diagramfile.txt
+        * option 2, generate png and set it as as window.location.href: http://sequencediagram.org/index.html?format=png&initialData=https://myhttpserver.example.org/diagramfile.txt
+    - bugfix: rendering messages over several participants miscalculates distance under special circumstances
+
+3.6.1
+    - bigger syntax error textarea
+    - bugfix: fragments missing end statement causes creation of messages via drag-n-drop to stop working
+
+3.6.0
+    - name of actor, control etc is displayed below the participant icon
+    - bugfix: self ref message with short text has to narrow collision area
+    - bugfix: participant names in svg export are not on correct height when exporting using firefox
+
+3.5.3
+    - bugfix: collision detection of divider when there is only a single participant
+    - bugfix: self ref message with long text has to wide collision area
+
+3.5.2
+    - bugfix: self reference messages are clipped when rightmost in the diagram and participant name is short
+    - bugfix: creating notes via context menu fails
+    - bugfix: some participant types are missing side margin
+
+3.5.1
+    - bugfix: deleting participants deletes divider
+    - bugfix: linear breaking when there are multiple line breaks between message entries
+
+3.5.0
+    - support for rounded box(rbox), angular box (abox), and box (box), they are used in the same way as notes, i.e., over, left of, right of
+
+3.4.0
+    - support for actor, control, database, entity, and boundary participants (loading images into the diagram is still supported but they will only be URLs inside SVG export)
+    - added par fragment to the right click menu
+    - updated the instruction diagram
+
+3.3.0
+    - diagram can be exported as svg image
+
+3.2.0
+    - support for parallel statement
+
+3.1.3
+    - bugfix: linear not working when there are line breaks between linear entries
+
+3.1.2
+    - linear messages are now always at same y position
+
+3.1.1
+    - bugfix: linear not working when there are spaces or color in the message type
+
+3.1.0
+    - undo redo support in all browsers with 100 levels via ctrl+z / ctrl+y (ctrl+shift+z)
+
+3.0.1
+    - updated instructions in diagram
+    - collision is detected on the lines of note over
+
+3.0.0
+    - entries support drag and drop inside the diagram after they have been created
+
+2.7.0
+    - Spacing between participants can be set using: participantspacing equal or participantspacing 23.5
+
+2.6.3
+    - autonumber no longer resets the count automatically when adding a second autonumber statement (note: use autonumber 1 if the behavior is wanted)
+
+2.6.2
+    - images in the diagram are cached in the browser until URL is changed or removed
+
+2.6.1
+    - protection against Firefox unordered task execution
+
+2.6.0
+    - spacing between entries in y axis can be set using: entryspacing 2.5
+
+2.5.1
+    - bugfix: Divider edit dialog
+
+2.5.0
+    - open source file support
+
+2.4.4
+    - color support for messages
+
+2.4.3
+    - bugfix: Interaction out of sync when top bar is hidden
+
+2.4.2
+    - support for editing fragments
+
+2.4.1
+    - syntax errors text box is moved when top bar is hidden
+
+2.4.0
+    - syntax errors are displayed in text box added
+...
+..
+.

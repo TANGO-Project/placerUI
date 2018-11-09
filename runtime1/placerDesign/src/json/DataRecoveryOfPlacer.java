@@ -1,0 +1,236 @@
+package json;
+
+import placer.impl.PlacerFactoryImpl;
+import placer.Bus;
+import placer.Global;
+import placer.Implementation;
+import placer.MainPlacerOut;
+import placer.Mapping;
+import placer.NameValue;
+import placer.ProcessingElement;
+import placer.Task;
+import placer.TaskGroup;
+import placer.TaskMapping;
+import placer.TransmissionMapping;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.List;
+
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
+
+public class DataRecoveryOfPlacer {
+	
+	/**
+	 * function which recover the result of PlacerOut and create appropriate instance 
+	 * @param saveDateFolder
+	 * @param global
+	 */
+	
+	protected static void dataRecovery(String saveDateFolder, Global global) {
+		
+		String pathPlacerOut = saveDateFolder + "\\placerOut.json";
+		File filePlacerOut = new File(pathPlacerOut);
+		
+		JsonObject jsonObject = null;
+		try {
+			InputStream fileInputStream = new FileInputStream(filePlacerOut);
+			JsonReader jsonReader = Json.createReader(fileInputStream);
+			jsonObject = jsonReader.readObject();
+			fileInputStream.close();
+			jsonReader.close();
+		}catch(Exception e) {
+			System.out.println("error");
+		}
+		
+		//delete MainPlacerOut to create another
+		
+		//PlacerFactoryImpl allow to create new Instance
+		PlacerFactoryImpl placerFactory = (PlacerFactoryImpl) PlacerFactoryImpl.init();
+		
+		//instance of MainPlacerOut and filling variables
+		MainPlacerOut mainPlacerOut = placerFactory.createMainPlacerOut();
+		global.setMainPlacerOut1(mainPlacerOut);
+		
+		mainPlacerOut.setInfo(jsonObject.getString("info"));
+		mainPlacerOut.setJsonFormat(jsonObject.getString("jsonFormat"));
+		mainPlacerOut.setTimeUnit(jsonObject.getString("timeUnit"));
+		mainPlacerOut.setDataUnit(jsonObject.getString("dataUnit"));
+		mainPlacerOut.setFilePath(saveDateFolder);
+		
+		if(mainPlacerOut.getJsonFormat().equals("PlacerBeta6Out")) {
+			
+			//recover of Mappings
+			JsonArray mappingJsonArray = jsonObject.getJsonArray("mappings");
+			List<JsonObject> listMappingJsonArray = mappingJsonArray.getValuesAs(JsonObject.class);
+		
+			JsonArray taskMappingJsonArray = null;
+			List<JsonObject> listTaskMappingJsonArray = null;
+		
+			JsonArray transmissionMappingJsonArray = null;
+			List<JsonObject> listTransmissionMappingJsonArray = null;
+		
+			JsonArray parametersJsonArray = null;
+			List<JsonObject> listParametersJsonArray = null;
+		
+			List<Task> allTasks = global.getTasks();
+			List<TaskGroup> allTaskGroups = global.getTaskGroups();
+			List<ProcessingElement> allProcessingElements = global.getProcessingElements();
+			List<Bus> allBusses = global.getBusses();
+		
+			String[] hashcode = null;
+			int compteur = 0;
+			String nameTransmission = "";
+		
+			for(int i=0; i<listMappingJsonArray.size(); i++) {
+				
+				//instance of Mapping and filling variables
+				Mapping mapping = placerFactory.createMapping();
+				global.getMainPlacerOut1().getMappings().add(mapping);
+				global.getMainPlacerOut1().getMappings().get(i).setHardwareName(listMappingJsonArray.get(i).getString("hardwareName"));
+				global.getMainPlacerOut1().getMappings().get(i).setMakespan(listMappingJsonArray.get(i).getInt("makespan"));
+				global.getMainPlacerOut1().getMappings().get(i).setEnergy(listMappingJsonArray.get(i).getInt("energy"));
+				
+				//recover of taskMappping
+				taskMappingJsonArray = listMappingJsonArray.get(i).getJsonArray("taskMapping");
+				listTaskMappingJsonArray = taskMappingJsonArray.getValuesAs(JsonObject.class);
+			
+				for(int j=0; j<listTaskMappingJsonArray.size(); j++) {
+					//instance of TaskMapping and filling variables
+					
+					TaskMapping taskMapping = placerFactory.createTaskMapping();
+					global.getMainPlacerOut1().getMappings().get(i).getTaskMappings().add(taskMapping);
+				
+					global.getMainPlacerOut1().getMappings().get(i).getTaskMappings().get(j)
+					.setTask(listTaskMappingJsonArray.get(j).getString("task"));
+				
+					for(Task allTask : allTasks) {
+						for(Implementation allImplementation : allTask.getImplementations()) {
+							if(listTaskMappingJsonArray.get(j).getString("implementation").equals(allImplementation.getName()) 
+							&& listTaskMappingJsonArray.get(j).getString("task").equals(((Task) allImplementation.eContainer()).getName())) {
+								global.getMainPlacerOut1().getMappings().get(i).getTaskMappings().get(j).setImplementation(allImplementation);
+							}
+						}
+					}
+				
+					if(global.getMainPlacerOut1().getMappings().get(i).getTaskMappings().get(j).getImplementation() == null) {
+						for(TaskGroup allTaskGroup : allTaskGroups) {
+							for(Task allTask : allTaskGroup.getTaskTaskGroups()) {
+								for(Implementation allImplementation : allTask.getImplementations()) {
+									if(listTaskMappingJsonArray.get(j).getString("implementation").equals(allImplementation.getName())	
+									&& listTaskMappingJsonArray.get(j).getString("task").substring(0, listTaskMappingJsonArray.get(j).getString("task")
+									.length()-3).equals(((Task) allImplementation.eContainer()).getName())) {
+										global.getMainPlacerOut1().getMappings().get(i).getTaskMappings().get(j).setImplementation(allImplementation);
+									}
+								}
+							}
+						}
+					}
+				
+					for(ProcessingElement allProcessingElement : allProcessingElements) {
+						if(listTaskMappingJsonArray.get(j).getString("processingElement").equals(allProcessingElement.getName())) {
+							global.getMainPlacerOut1().getMappings().get(i).getTaskMappings().get(j).setProcessingElement(allProcessingElement);
+						}
+					}
+				
+					global.getMainPlacerOut1().getMappings().get(i).getTaskMappings().get(j)
+					.setStart(listTaskMappingJsonArray.get(j).getInt("start"));
+					global.getMainPlacerOut1().getMappings().get(i).getTaskMappings().get(j)
+					.setDuration(listTaskMappingJsonArray.get(j).getInt("duration"));
+					global.getMainPlacerOut1().getMappings().get(i).getTaskMappings().get(j)
+					.setEnd(listTaskMappingJsonArray.get(j).getInt("end"));
+					
+					//recover of Parameters
+					parametersJsonArray = listTaskMappingJsonArray.get(j).getJsonArray("parameters");
+					listParametersJsonArray = parametersJsonArray.getValuesAs(JsonObject.class);
+				
+					for(int k=0; k<listParametersJsonArray.size(); k++) {
+						
+						//instance of Parameters and filling variables
+						NameValue nameValue = placerFactory.createNameValue();
+						global.getMainPlacerOut1().getMappings().get(i).getTaskMappings().get(j).getNameValues().add(nameValue);
+					
+						global.getMainPlacerOut1().getMappings().get(i).getTaskMappings().get(j).getNameValues()
+						.get(k).setName(listParametersJsonArray.get(k).getString("name"));
+						global.getMainPlacerOut1().getMappings().get(i).getTaskMappings().get(j).getNameValues()
+						.get(k).setValue(listParametersJsonArray.get(k).getInt("value"));
+					}
+				}
+				
+				//recover of TransmissionMappping
+				transmissionMappingJsonArray = listMappingJsonArray.get(i).getJsonArray("transmissionMapping");
+				listTransmissionMappingJsonArray = transmissionMappingJsonArray.getValuesAs(JsonObject.class);
+			
+				for(int j=0; j<listTransmissionMappingJsonArray.size(); j++) {
+					
+					//instance of TransmissionMapping and filling variables
+					TransmissionMapping transmissionMapping = placerFactory.createTransmissionMapping();
+					global.getMainPlacerOut1().getMappings().get(i).getTransmissionMappings().add(transmissionMapping);
+				
+					hashcode = listTransmissionMappingJsonArray.get(j).getString("transmission").split("");
+					compteur = 0;
+					while(hashcode[hashcode.length-(compteur+1)].charAt(0)<58 && hashcode[hashcode.length-(compteur+1)].charAt(0)>47) {
+						compteur++;
+						hashcode[hashcode.length-compteur] = "";
+					}
+					nameTransmission = "";
+					for(int k=0; k<hashcode.length-compteur; k++) {
+						nameTransmission = nameTransmission + hashcode[k];
+					}
+					global.getMainPlacerOut1().getMappings().get(i).getTransmissionMappings().get(j).setTransmission(nameTransmission);
+				
+					for(Bus allBus : allBusses) {
+						if(listTransmissionMappingJsonArray.get(j).getString("bus").equals(allBus.getName())) {
+							global.getMainPlacerOut1().getMappings().get(i).getTransmissionMappings().get(j).setBus(allBus);
+						}
+					}
+					
+					for(ProcessingElement allProcessingElement : allProcessingElements) {
+						if(listTransmissionMappingJsonArray.get(j).getString("fromPE").equals(allProcessingElement.getName())) {
+							global.getMainPlacerOut1().getMappings().get(i).getTransmissionMappings().get(j).setFromPE((allProcessingElement));
+						}
+					}
+					
+					for(ProcessingElement allProcessingElement : allProcessingElements) {
+						if(listTransmissionMappingJsonArray.get(j).getString("toPE").equals(allProcessingElement.getName())) {
+							global.getMainPlacerOut1().getMappings().get(i).getTransmissionMappings().get(j).setToPE((allProcessingElement));
+						}
+					}
+					
+					global.getMainPlacerOut1().getMappings().get(i).getTransmissionMappings().get(j)
+					.setFromTask(listTransmissionMappingJsonArray.get(j).getString("fromTask"));
+					global.getMainPlacerOut1().getMappings().get(i).getTransmissionMappings().get(j)
+					.setToTask(listTransmissionMappingJsonArray.get(j).getString("toTask"));
+				
+					global.getMainPlacerOut1().getMappings().get(i).getTransmissionMappings().get(j)
+					.setStart(listTransmissionMappingJsonArray.get(j).getInt("start"));
+					global.getMainPlacerOut1().getMappings().get(i).getTransmissionMappings().get(j)
+					.setDuration(listTransmissionMappingJsonArray.get(j).getInt("duration"));
+					global.getMainPlacerOut1().getMappings().get(i).getTransmissionMappings().get(j)
+					.setEnd(listTransmissionMappingJsonArray.get(j).getInt("end"));
+				}
+			}
+			System.out.println("All the data have been recovered");
+			
+		/*File fileIn = new File(pathPlacerOut);
+		Scanner in = null;
+		try {
+			in = new Scanner(fileIn);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		while(in.hasNextLine()) {
+			System.out.println(in.nextLine());
+			
+		}
+		in.close();
+		//String filePlacerOut = "placerOut.txt";
+		//System.out.println(pathPlacerOut);*/
+		}
+	}
+}

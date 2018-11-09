@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ASCII"?>
+<placer:Global xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:placer="http://www.example.org/placer">
+  <tasks name="x wx w">
+    <transmissions from="//@tasks.0" to="//@tasks.1" name="qxq"/>
+  </tasks>
+  <tasks name="XSXS">
+    <implementations name="xsqxq"/>
+  </tasks>
+  <loops/>
+  <processingElementClasses xsi:type="placer:MultiTaskPermanentTasks" name="wx"/>
+  <processingElementClasses xsi:type="placer:SwitchingTask" name="sddcsc">
+    <resources> cx cx</resources>
+  </processingElementClasses>
+  <processingElementClasses xsi:type="placer:MultiTaskPermanentTasks" name="ffsdf"/>
+  <processingElements name="sqccqs"/>
+  <processingElements name="xsqxsq" class="//@processingElementClasses.1"/>
+  <busses name="cdscd"/>
+  <busses name="rgrt">
+    <connections name="sqcqsc" connectionTo="//@processingElements.1" connectionFrom="//@busses.1"/>
+  </busses>
+  <constraintOrObjectives xsi:type="placer:MustBeUsed" name="ntkhykty" yes="true"/>
+  <constraintOrObjectives xsi:type="placer:SamePE" name="cssdqed" taskSamePE="//@tasks.0 //@tasks.1"/>
+  <constraintOrObjectives xsi:type="placer:SymetricPE" name="qsdq"/>
+  <constraintOrObjectives xsi:type="placer:RunOn" name="cscs" yes="true"/>
+  <constraintOrObjectives xsi:type="placer:MustBeUsed" name="gtdhgth" processingElementMustBeUsed="//@processingElements.1"/>
+  <powerCap/>
+  <energyCap/>
+  <globalInformations information="laposte" timeUnit="secondes" dataUnit="bits"/>
+  <mappingGoals xsi:type="placer:MultiObjectiveGoal" name="gvds" simpleObjective1="minEnergy"/>
+</placer:Global>

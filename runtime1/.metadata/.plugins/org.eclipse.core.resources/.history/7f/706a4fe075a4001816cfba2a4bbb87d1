@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ASCII"?>
+<placer:HardwareModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:placer="http://www.example.org/placer" name="A">
+  <processingElements name="reg"/>
+  <busses name="fez"/>
+  <busses name="dzad" throughput="47" latency="9"/>
+</placer:HardwareModel>

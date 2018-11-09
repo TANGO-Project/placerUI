@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ASCII"?>
+<placer:HardwareModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:placer="http://www.example.org/placer" name="A">
+  <processingElements name="fefef" hardwareModel="/"/>
+  <processingElements name="cds" hardwareModel="/"/>
+  <busses name="gxqsgd">
+    <connections name="dzde" connectionTo="//@processingElements.0" connectionFrom="//@busses.0"/>
+    <connections name="ll," connectionTo="//@processingElements.1" connectionFrom="//@busses.0"/>
+    <connections name=",kjbk" connectionTo="//@processingElements.0" connectionFrom="//@busses.0"/>
+  </busses>
+  <busses name="gdg">
+    <connections name="dzfz" connectionTo="//@processingElements.1" connectionFrom="//@busses.1"/>
+  </busses>
+</placer:HardwareModel>

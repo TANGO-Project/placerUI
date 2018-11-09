@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated placer -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="placer.presentation.PlacerModelWizardID"
+            name="%_UI_PlacerModelWizard_label"
+            class="placer.presentation.PlacerModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/PlacerModelFile.gif">
+         <description>%_UI_PlacerModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated placer -->
+      <editor
+            id="placer.presentation.PlacerEditorID"
+            name="%_UI_PlacerEditor_label"
+            icon="icons/full/obj16/PlacerModelFile.gif"
+            extensions="placer"
+            class="placer.presentation.PlacerEditor"
+            contributorClass="placer.presentation.PlacerActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

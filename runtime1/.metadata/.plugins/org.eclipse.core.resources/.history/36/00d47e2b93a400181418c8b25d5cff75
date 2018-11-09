@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ASCII"?>
+<placer:ImplementationModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:placer="http://www.example.org/placer">
+  <implementations name="dtfjgkhkl" duration="464">
+    <target xsi:type="placer:MultiTaskPermanentTasks" href="Meta.placer#//@processingElementClasses.0"/>
+    <implement href="Software.placer#//@tasks.5"/>
+  </implementations>
+  <implementations name="fezede">
+    <target xsi:type="placer:MultiTaskPermanentTasks" href="Meta.placer#//@processingElementClasses.0"/>
+    <implement href="Software.placer#//@tasks.1"/>
+  </implementations>
+  <implementations name="ezrty">
+    <target xsi:type="placer:MultiTaskPermanentTasks" href="Meta.placer#//@processingElementClasses.0"/>
+    <implement href="Software.placer#//@tasks.4"/>
+  </implementations>
+  <implementations name="sdfe" duration="">
+    <target xsi:type="placer:SwitchingTask" href="Meta.placer#//@processingElementClasses.1"/>
+    <implement href="Software.placer#//@tasks.4"/>
+  </implementations>
+  <implementations name="tgrfger">
+    <target xsi:type="placer:MultiTaskPermanentTasks" href="Meta.placer#//@processingElementClasses.0"/>
+    <implement href="Software.placer#//@tasks.21"/>
+  </implementations>
+</placer:ImplementationModel>

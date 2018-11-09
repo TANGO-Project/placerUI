@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ASCII"?>
+<placer:HardwareModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:placer="http://www.example.org/placer" name="A">
+  <processingElements name="ngn" powerModel="78">
+    <class xsi:type="placer:MultiTaskPermanentTasks" href="Meta.placer#//@processingElementClasses.0"/>
+  </processingElements>
+  <processingElements name="ede"/>
+  <busses name="a" throughput="1" latency="1">
+    <connections name="gsg" connectTo="//@processingElements.0" connectFrom="//@busses.0"/>
+  </busses>
+</placer:HardwareModel>

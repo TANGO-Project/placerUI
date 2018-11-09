@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="ASCII"?>
+<placer:MetaModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:placer="http://www.example.org/placer">
+  <processingElementClasses xsi:type="placer:MultiTaskPermanentTasks" name="dsq"/>
+  <processingElementClasses xsi:type="placer:SwitchingTask" name="dqD" switchingDelay="89"/>
+</placer:MetaModel>

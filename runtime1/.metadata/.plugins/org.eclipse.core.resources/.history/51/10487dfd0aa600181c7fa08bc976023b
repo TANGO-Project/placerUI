@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ASCII"?>
+<placer:SoftwareModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:placer="http://www.example.org/placer" name="AZERT">
+  <tasks name="veve">
+    <implementations name="csqcscv"/>
+  </tasks>
+</placer:SoftwareModel>

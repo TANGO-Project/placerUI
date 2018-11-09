@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ASCII"?>
+<placer:SoftwareModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:placer="http://www.example.org/placer" name="1">
+  <tasks name="Average Field Brightness Correction"/>
+  <tasks name="Lighting Normalisation"/>
+  <tasks name="Downscaling"/>
+  <tasks name="Binarisation"/>
+  <tasks name="Details Suppression"/>
+  <tasks name="Orientation Estimation"/>
+  <tasks name="First Rotation">
+    <taskImplement href="Implementation.placer#//@implementations.0"/>
+  </tasks>
+  <tasks name="Orientation Determination"/>
+  <tasks name="Barcode Research"/>
+  <tasks name="Barcode Decode"/>
+  <tasks name="Lighting Normalisation"/>
+  <tasks name="Second Rotation"/>
+  <tasks name="Local Binarisation"/>
+  <tasks name="Accurate Location Determination"/>
+  <tasks name="Transformation"/>
+  <tasks name="Position Accuracy Estimation"/>
+  <tasks name="Final Lighting Normalisation"/>
+  <tasks name="Digit Extraction"/>
+  <tasks name="Digit FinalCut"/>
+  <tasks name="Digit Lighting Normalisation"/>
+  <tasks name="Digit Lighting Enhancement"/>
+  <tasks name="Digit Correlation"/>
+  <tasks name="Digit Patterns Identification"/>
+  <tasks name="Digit Decision"/>
+  <tasks name="Digit Value Determination"/>
+  <tasks name="End"/>
+</placer:SoftwareModel>

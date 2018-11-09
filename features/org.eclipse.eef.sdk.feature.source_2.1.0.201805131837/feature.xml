@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature id="org.eclipse.eef.sdk.feature.source" version="2.1.0.201805131837" label="%featureName" provider-name="%featureProvider">
+  <includes id="org.eclipse.eef.sdk.feature" version="2.1.0.201805131837"/>
+  <description url="%descriptionUrl">
+      %description
+   </description>
+  <copyright url="%copyrightUrl">
+      %copyright
+   </copyright>
+  <license url="%licenseUrl">
+      %license
+   </license>
+  <plugin id="org.eclipse.eef.source" version="2.1.0.201805131837" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.eef.edit.source" version="2.1.0.201805131837" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.eef.core.source" version="2.1.0.201805131837" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.eef.documentation.source" version="2.1.0.201805131837" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.eef.ide.source" version="2.1.0.201805131837" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.eef.ide.ui.source" version="2.1.0.201805131837" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.eef.properties.ui.source" version="2.1.0.201805131837" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.eef.properties.ui.legacy.source" version="2.1.0.201805131837" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.eef.common.source" version="2.1.0.201805131837" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.eef.common.ui.source" version="2.1.0.201805131837" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.eef.ide.ui.properties.source" version="2.1.0.201805131837" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.eef.documentation.javadoc.source" version="2.1.0.201805131837" download-size="0" install-size="0" unpack="false"/>
+</feature>

@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Built-By: genie.swtbot
+Created-By: Apache Maven
+Build-Jdk: 1.8.0_162
+
+Name: META-INF/maven/org.eclipse.swtbot.features/org.eclipse.swtbot.ge
+ nerator.feature/pom.properties
+SHA-256-Digest: 0yXCHP0IUShoEytzjXzNwRp5UEuNS/VFCPdw2EOX0Go=
+
+Name: META-INF/maven/org.eclipse.swtbot.features/org.eclipse.swtbot.ge
+ nerator.feature/pom.xml
+SHA-256-Digest: 08ZvM6ZH+FWK1gHBYOQmaPF3J3rwCE7xMSo0CGTtgs8=
+
+Name: epl-v10.html
+SHA-256-Digest: mpbQ2vmKpvtKpTDTmcdCxmEhsL2uSh9/+iLSE14d9/0=
+
+Name: feature.xml
+SHA-256-Digest: GlZel2SHxc+JLbAeLHCL70CB2Yp4Meq8eKGuzk8r4iw=
+
+Name: feature.properties
+SHA-256-Digest: qPVDrt+IDhMD13RmKbfFtKEg2KQua4j9qjsg2CJi1M8=
+
+Name: license.html
+SHA-256-Digest: X315zLynvdLZ4DaYSopgxruQUUEadA3FOPNviC+YO24=
+

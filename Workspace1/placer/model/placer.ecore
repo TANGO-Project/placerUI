@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="placer" nsURI="http://www.example.org/placer" nsPrefix="placer">
+  <eClassifiers xsi:type="ecore:EClass" name="Task">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transmissions" upperBound="-1"
+        eType="#//Transmission" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="implementations" lowerBound="1"
+        upperBound="-1" eType="#//Implementation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Transmission">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="from" lowerBound="1" eType="#//Task"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="to" lowerBound="1" eType="#//Task"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="amount" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timing" lowerBound="1"
+        eType="#//TimingObject" defaultValueLiteral="Sticky"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TimingObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eLiterals name="Asap"/>
+    <eLiterals name="Alap" value="1"/>
+    <eLiterals name="Sticky" value="2"/>
+    <eLiterals name="Free" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessingElementClass" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resourcesDeclarations"
+        upperBound="-1" eType="#//ResourcesDeclaration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="propertiesDeclarations"
+        upperBound="-1" eType="#//PropertiesDeclaration" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MultiTaskPermanentTasks" eSuperTypes="#//ProcessingElementClass"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SwitchingTask" eSuperTypes="#//ProcessingElementClass">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="switchingDelay" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Bus">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeUnitPerDataUnit" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="latency" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connections" lowerBound="1"
+        upperBound="-1" eType="#//Connection" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessingElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="memory" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="powerModel" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="class" lowerBound="1" eType="#//ProcessingElementClass"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resourcesDefinitions" upperBound="-1"
+        eType="#//ResourcesDefinition" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="propertiesDefinitions"
+        upperBound="-1" eType="#//PropertiesDefinition" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Implementation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//ProcessingElementClass"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="computationMemory" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
+        eType="#//Parameters" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resourcesUsages" upperBound="-1"
+        eType="#//ResourcesUsage" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Connection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connectionTo" lowerBound="1"
+        eType="#//ProcessingElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connectionFrom" lowerBound="1"
+        eType="#//Bus"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConstraintOrObjective" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="info" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SamePE" eSuperTypes="#//ConstraintOrObjective">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="yes" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//BooleanObject"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="taskSamePE" lowerBound="2"
+        upperBound="-1" eType="#//Task"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EnergyCap">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="energyCap" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RunOn" eSuperTypes="#//ConstraintOrObjective">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="yes" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//BooleanObject"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="processingElementRunOn"
+        lowerBound="1" eType="#//ProcessingElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="taskRunOn" lowerBound="1"
+        eType="#//Task"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PowerCap">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="powerCap" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SymetricPE" eSuperTypes="#//ConstraintOrObjective">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="processingElementSymetricPE"
+        lowerBound="2" upperBound="-1" eType="#//ProcessingElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MustBeUsed" eSuperTypes="#//ConstraintOrObjective">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="yes" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//BooleanObject"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="processingElementMustBeUsed"
+        lowerBound="1" eType="#//ProcessingElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MappingGoal" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="simpleObjective" lowerBound="1"
+        eType="#//SimpleGoal" defaultValueLiteral="minEnergy"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GlobalInformation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="information" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeUnit" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataUnit" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MultiObjectiveGoal" eSuperTypes="#//MappingGoal">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="simpleObjective2" lowerBound="1"
+        eType="#//SimpleGoal" defaultValueLiteral="minMakespan"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SimpleObjectiveGoal" eSuperTypes="#//MappingGoal"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="SimpleGoal" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eLiterals name="minMakespan"/>
+    <eLiterals name="minEnergy" value="1"/>
+    <eLiterals name="minFrame" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TaskGroup">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nbInstances" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="taskTaskGroups" lowerBound="1"
+        upperBound="-1" eType="#//Task" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Global">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraintOrObjectives"
+        upperBound="-1" eType="#//ConstraintOrObjective" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="powerCap" eType="#//PowerCap"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="energyCap" eType="#//EnergyCap"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="globalInformations" lowerBound="1"
+        eType="#//GlobalInformation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mappingGoals" eType="#//MappingGoal"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="busses" upperBound="-1"
+        eType="#//Bus" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="processingElements" lowerBound="1"
+        upperBound="-1" eType="#//ProcessingElement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="processingElementClasses"
+        lowerBound="1" upperBound="-1" eType="#//ProcessingElementClass" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" lowerBound="1" upperBound="-1"
+        eType="#//Task" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="taskGroups" upperBound="-1"
+        eType="#//TaskGroup" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="maxMakeSpan" eType="#//MaxMakeSpan"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="softwareClass" eType="#//SoftwareClass"
+        defaultValueLiteral="oneShotSoftware"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="globalProperties" upperBound="-1"
+        eType="#//GlobalProperties" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="commandLineParameters"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mainPlacerOut1" eType="#//MainPlacerOut"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MaxMakeSpan">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxMakeSpan" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ResourcesDeclaration">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertiesDeclaration">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Parameters">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ResourcesDefinition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" lowerBound="1" eType="#//ResourcesDeclaration"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertiesDefinition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" lowerBound="1" eType="#//PropertiesDeclaration"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ResourcesUsage">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" lowerBound="1" eType="#//ResourcesDeclaration"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="formula" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SoftwareClass" instanceClassName="org.eclipse.emf.common.util.Enumerator">
+    <eLiterals name="oneShotSoftware"/>
+    <eLiterals name="iterative" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GlobalProperties">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TaskMapping">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="start" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="end" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nameValues" upperBound="-1"
+        eType="#//NameValue" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="processingElement" lowerBound="1"
+        eType="#//ProcessingElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" lowerBound="1"
+        eType="#//Implementation"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="task" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Mapping" instanceClassName="Mapping">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hardwareName" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="makespan" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="energy" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="taskMappings" upperBound="-1"
+        eType="#//TaskMapping" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sharedFunctionMappings"
+        upperBound="-1" eType="#//SharedFunctionMapping" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transmissionMappings" upperBound="-1"
+        eType="#//TransmissionMapping" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SharedFunctionMapping">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sharedImplem" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nbInstance" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="host" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nameValues" upperBound="-1"
+        eType="#//NameValue" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NameValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MainPlacerOut">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="info" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="jsonFormat" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeUnit" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataUnit" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" lowerBound="1"
+        upperBound="-1" eType="#//Mapping" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="filePath" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TransmissionMapping">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="start" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="duration" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="end" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bus" lowerBound="1" eType="#//Bus"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="transmission" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fromPE" lowerBound="1"
+        eType="#//ProcessingElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toPE" lowerBound="1" eType="#//ProcessingElement"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fromTask" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="toTask" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NewEClass37"/>
+</ecore:EPackage>

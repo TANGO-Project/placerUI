@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:description_2="http://www.eclipse.org/sirius/table/description/1.1.0" xmlns:filter="http://www.eclipse.org/sirius/diagram/description/filter/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="placer" version="12.0.0.2017041100">
+  <ownedViewpoints name="MyViewpoint">
+    <ownedJavaExtensions qualifiedClassName="placer.design.Services"/>
+  </ownedViewpoints>
+  <ownedViewpoints name="placer" modelFileExtension="placer">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="Software Diagram" initialisation="true" domainClass="placer.SoftwareModel" enablePopupBars="true">
+      <filters xsi:type="filter:CompositeFilterDescription" name="Without transmissions">
+        <filters xsi:type="filter:MappingFilter" mappings="//@ownedViewpoints[name='placer']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@edgeMappings[name='transmission']" semanticConditionExpression="false"/>
+      </filters>
+      <defaultLayer name="Default">
+        <nodeMappings name="softwareTaskNode" semanticCandidatesExpression="feature:softwareTaskes" domainClass="placer.SoftwareTask">
+          <style xsi:type="style:SquareDescription" showIcon="false" sizeComputationExpression="2" labelPosition="node" resizeKind="NSEW" width="13" height="5">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_blue']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_blue']"/>
+          </style>
+        </nodeMappings>
+        <edgeMappings name="transmission" deletionDescription="//@ownedViewpoints[name='placer']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='transmission']" sourceMapping="//@ownedViewpoints[name='placer']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@nodeMappings[name='softwareTaskNode']" targetMapping="//@ownedViewpoints[name='placer']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@nodeMappings[name='softwareTaskNode']" targetFinderExpression="feature:target" sourceFinderExpression="feature:source" domainClass="placer.Transmission" useDomainElement="true" reconnections="//@ownedViewpoints[name='placer']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='resetSourceTransmission'] //@ownedViewpoints[name='placer']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='resetTargetTransmission']">
+          <style sizeComputationExpression="4" routingStyle="manhattan" endsCentering="Both">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <toolSections name="Creation">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="newTask" forceRefresh="true" nodeMappings="//@ownedViewpoints[name='placer']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@nodeMappings[name='softwareTaskNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="placer.SoftwareTask" referenceName="softwareTaskes"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="newTransmission" forceRefresh="true" edgeMappings="//@ownedViewpoints[name='placer']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@edgeMappings[name='transmission']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="placer.Transmission" referenceName="transmissions">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="source" valueExpression="var:source"/>
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="target" valueExpression="var:target"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ReconnectEdgeDescription" name="resetSourceTransmission" forceRefresh="true" reconnectionKind="RECONNECT_SOURCE">
+            <source name="source"/>
+            <target name="target"/>
+            <sourceView name="sourceView"/>
+            <targetView name="targetView"/>
+            <element name="element"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="source" valueExpression="var:target"/>
+              </firstModelOperations>
+            </initialOperation>
+            <edgeView name="edgeView"/>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ReconnectEdgeDescription" name="resetTargetTransmission" forceRefresh="true">
+            <source name="source"/>
+            <target name="target"/>
+            <sourceView name="sourceView"/>
+            <targetView name="targetView"/>
+            <element name="element2"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element2">
+                <subModelOperations xsi:type="tool_1:SetValue" featureName="target" valueExpression="var:target"/>
+              </firstModelOperations>
+            </initialOperation>
+            <edgeView name="edgeView"/>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DeleteElementDescription" name="transmission" precondition="[self.source=null OR self.target=null/]" forceRefresh="true">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool_1:RemoveElement"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </defaultLayer>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_2:EditionTableDescription" name="Meta Model" initialisation="true" showOnStartup="true" domainClass="placer.MetaModel" initialHeaderColumnWidth="15">
+      <ownedLineMappings name="multiTaskPermanentTasks" domainClass="placer.MultiTaskPermanentTasks" headerLabelExpression="MultiTaskPermanentTasks"/>
+      <ownedLineMappings name="switchingTask" domainClass="placer.SwitchingTask" headerLabelExpression="SwitchingTask"/>
+      <ownedCreateLine name="createLineMultiTaskPermanentTasks" forceRefresh="true" mapping="//@ownedViewpoints[name='placer']/@ownedRepresentations[name='Meta%20Model']/@ownedLineMappings[name='multiTaskPermanentTasks']">
+        <variables name="root" documentation="The semantic root element of the table."/>
+        <variables name="element" documentation="The semantic currently edited element."/>
+        <variables name="container" documentation="The semantic element corresponding to the view container."/>
+        <firstModelOperation xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+          <subModelOperations xsi:type="tool_1:CreateInstance" typeName="placer.MultiTaskPermanentTasks" referenceName="processingElementClasses"/>
+        </firstModelOperation>
+      </ownedCreateLine>
+      <ownedCreateLine name="createSwitchingTask" forceRefresh="true" mapping="//@ownedViewpoints[name='placer']/@ownedRepresentations[name='Meta%20Model']/@ownedLineMappings[name='switchingTask']">
+        <variables name="root" documentation="The semantic root element of the table."/>
+        <variables name="element" documentation="The semantic currently edited element."/>
+        <variables name="container" documentation="The semantic element corresponding to the view container."/>
+        <firstModelOperation xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+          <subModelOperations xsi:type="tool_1:CreateInstance" typeName="placer.SwitchingTask" referenceName="processingElementClasses"/>
+        </firstModelOperation>
+      </ownedCreateLine>
+      <ownedColumnMappings name="nameCol" headerLabelExpression="Name" initialWidth="12" featureName="name" labelExpression="aql:self.name"/>
+      <ownedColumnMappings name="ressourcesCol" headerLabelExpression="Ressources" initialWidth="18" featureName="ressources" labelExpression="aql:self.ressources"/>
+      <ownedColumnMappings name="propertiesCol" headerLabelExpression="Properties" initialWidth="18" featureName="properties" labelExpression="aql:self.properties"/>
+      <ownedColumnMappings name="switchingDelayCol" headerLabelExpression="SwitchingDelay" initialWidth="8" featureName="switchingDelay" labelExpression="aql:self.switchingDelay"/>
+    </ownedRepresentations>
+  </ownedViewpoints>
+</description:Group>

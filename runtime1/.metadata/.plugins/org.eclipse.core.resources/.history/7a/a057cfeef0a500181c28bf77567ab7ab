@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<placer:SoftwareModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:placer="http://www.example.org/placer" name="AZERT">
+  <tasks name="fsdf" softwareModel="/">
+    <transmissions from="//@tasks.0" to="//@tasks.1" name="csc"/>
+  </tasks>
+  <tasks name="cdsc" softwareModel="/">
+    <implementations name="fefe"/>
+    <implementations name="xscs"/>
+    <implementations name="feef"/>
+  </tasks>
+</placer:SoftwareModel>

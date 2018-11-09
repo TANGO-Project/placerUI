@@ -1,0 +1,12 @@
+/Interaction
+/Interaction2
+/Workspace
+/Workspace()
+/Runtime
+/Runtime()
+
+# eclipse files
+.classpath
+.project
+.settings/
+.cache-main

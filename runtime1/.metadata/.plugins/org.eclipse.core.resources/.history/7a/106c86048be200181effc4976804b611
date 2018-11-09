@@ -1,0 +1,1759 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/tree/description/1.0.0" xmlns:description_2="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:description_3="http://www.eclipse.org/sirius/table/description/1.1.0" xmlns:description_4="http://www.eclipse.org/sirius/diagram/sequence/description/2.0.0" xmlns:filter="http://www.eclipse.org/sirius/diagram/description/filter/1.1.0" xmlns:properties="http://www.eclipse.org/sirius/properties/1.0.0" xmlns:properties-ext-widgets-reference="http://www.eclipse.org/sirius/properties/1.0.0/ext/widgets/reference" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:validation="http://www.eclipse.org/sirius/description/validation/1.1.0" name="placer" version="12.0.0.2017041100">
+  <ownedViewpoints name="placerViewpoint" modelFileExtension="placer">
+    <ownedRepresentations xsi:type="description_1:TreeDescription" name="HardwareClassModel" titleExpression="HardwareClassModel " initialisation="true" showOnStartup="true" domainClass="placer.Global">
+      <metamodel href="http://www.example.org/placer#/"/>
+      <subItemMappings name="MultiTaskPermanentTasks" domainClass="placer.MultiTaskPermanentTasks" preconditionExpression="service:conditionCreationMultiTaskPermanentTask()" semanticCandidatesExpression="feature:processingElementClasses">
+        <defaultStyle labelExpression="aql:'MultiTaskPermanentTasks '+self.name">
+          <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+        </defaultStyle>
+        <subItemMappings name="ResourcesDeclaration" domainClass="placer.ResourcesDeclaration" preconditionExpression="service:conditionCreationResourcesDeclaration()" semanticCandidatesExpression="feature:resourcesDeclarations">
+          <defaultStyle labelExpression="aql:'ResourcesDeclaration '+self.name">
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </defaultStyle>
+        </subItemMappings>
+        <subItemMappings name="PropertiesDeclaration" domainClass="placer.PropertiesDeclaration" preconditionExpression="service:conditionCreationPropertiesDeclaration()" semanticCandidatesExpression="feature:propertiesDeclarations">
+          <defaultStyle labelExpression="aql:'PropertiesDeclaration '+self.name">
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </defaultStyle>
+        </subItemMappings>
+        <dropTools name="Declarations" forceRefresh="true">
+          <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="[newContainer/]">
+            <subModelOperations xsi:type="tool:If" conditionExpression="service:dropResourcesDeclaration(element)">
+              <subModelOperations xsi:type="tool:SetValue" featureName="resourcesDeclarations" valueExpression="var:element"/>
+            </subModelOperations>
+            <subModelOperations xsi:type="tool:If" conditionExpression="service:dropPropertiesDeclaration(element)">
+              <subModelOperations xsi:type="tool:SetValue" featureName="propertiesDeclarations" valueExpression="var:element"/>
+            </subModelOperations>
+          </firstModelOperation>
+          <oldContainer name="oldContainer"/>
+          <newContainer name="newContainer"/>
+          <element name="element"/>
+          <newViewContainer name="newViewContainer"/>
+          <precedingSiblings name="precedingSiblings" documentation="The list of all the preceding siblings in a Drag and Drop operation"/>
+        </dropTools>
+        <create name="new ResourcesDeclaration of MultiTaskPernamentTasks" forceRefresh="true" mapping="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='HardwareClassModel']/@subItemMappings[name='MultiTaskPermanentTasks']/@subItemMappings[name='ResourcesDeclaration']">
+          <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="var:element">
+            <subModelOperations xsi:type="tool:CreateInstance" typeName="placer.ResourcesDeclaration" referenceName="resourcesDeclarations">
+              <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="HardwareClassModel">
+                <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                  <initialOperation/>
+                </buttons>
+                <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                  <initialOperation/>
+                </buttons>
+                <page name="New ResourcesDeclaration" labelExpression="New ResourcesDeclaration" domainClass="placer.ResourcesDeclaration" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='HardwareClassModel']/@subItemMappings[name='MultiTaskPermanentTasks']/@create.0/@firstModelOperation/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+                <groups name="new ResourcesDeclaration" labelExpression="Properties" domainClass="placer.ResourcesDeclaration" semanticCandidateExpression="var:self">
+                  <controls xsi:type="properties:TextDescription" name="Name" labelExpression="Name : " helpExpression="String Excepted" valueExpression="aql:self.name">
+                    <initialOperation>
+                      <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                        <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="var:newValue"/>
+                      </firstModelOperations>
+                    </initialOperation>
+                  </controls>
+                </groups>
+              </subModelOperations>
+            </subModelOperations>
+          </firstModelOperation>
+          <variables name="root" documentation="The semantic element of the tree."/>
+          <variables name="element" documentation="The currently edited element."/>
+          <variables name="container" documentation="The semantic element corresponding to the view container."/>
+        </create>
+        <create name="new PropertiesDeclaration of MultiTaskPermanentTasks" forceRefresh="true" mapping="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='HardwareClassModel']/@subItemMappings[name='MultiTaskPermanentTasks']/@subItemMappings[name='PropertiesDeclaration']">
+          <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="var:element">
+            <subModelOperations xsi:type="tool:CreateInstance" typeName="placer.PropertiesDeclaration" referenceName="propertiesDeclarations">
+              <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="HardwareClassModel">
+                <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                  <initialOperation/>
+                </buttons>
+                <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                  <initialOperation/>
+                </buttons>
+                <page name="New PropertiesDeclaration" labelExpression="New PropertiesDeclaration" domainClass="placer.PropertiesDeclaration" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='HardwareClassModel']/@subItemMappings[name='MultiTaskPermanentTasks']/@create.1/@firstModelOperation/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+                <groups name="new PropertiesDeclaration" labelExpression="Properties" domainClass="placer.PropertiesDeclaration" semanticCandidateExpression="var:self">
+                  <controls xsi:type="properties:TextDescription" name="Name" labelExpression="Name : " helpExpression="String Excepted" valueExpression="aql:self.name">
+                    <initialOperation>
+                      <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                        <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="var:newValue"/>
+                      </firstModelOperations>
+                    </initialOperation>
+                  </controls>
+                </groups>
+              </subModelOperations>
+            </subModelOperations>
+          </firstModelOperation>
+          <variables name="root" documentation="The semantic element of the tree."/>
+          <variables name="element" documentation="The currently edited element."/>
+          <variables name="container" documentation="The semantic element corresponding to the view container."/>
+        </create>
+      </subItemMappings>
+      <subItemMappings name="SwitchingTask" domainClass="placer.SwitchingTask" preconditionExpression="service:conditionCreationSwitchingTask()" semanticCandidatesExpression="feature:processingElementClasses">
+        <defaultStyle labelExpression="aql:'SwitchingTask '+self.name+'('+self.switchingDelay+')'">
+          <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+        </defaultStyle>
+        <subItemMappings name="ResourcesDeclaration" domainClass="placer.ResourcesDeclaration" preconditionExpression="service:conditionCreationResourcesDeclaration()" semanticCandidatesExpression="feature:resourcesDeclarations">
+          <defaultStyle labelExpression="aql:'ResourcesDeclaration '+self.name">
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </defaultStyle>
+        </subItemMappings>
+        <subItemMappings name="PropertiesDeclaration" domainClass="placer.PropertiesDeclaration" preconditionExpression="service:conditionCreationPropertiesDeclaration()" semanticCandidatesExpression="feature:eAllContents">
+          <defaultStyle labelExpression="aql:'PropertiesDeclaration '+self.name">
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </defaultStyle>
+        </subItemMappings>
+        <dropTools name="Declarations" forceRefresh="true">
+          <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="[newContainer/]">
+            <subModelOperations xsi:type="tool:If" conditionExpression="service:dropResourcesDeclaration(element)">
+              <subModelOperations xsi:type="tool:SetValue" featureName="resourcesDeclarations" valueExpression="var:element"/>
+            </subModelOperations>
+            <subModelOperations xsi:type="tool:If" conditionExpression="service:dropPropertiesDeclaration(element)">
+              <subModelOperations xsi:type="tool:SetValue" featureName="propertiesDeclarations" valueExpression="var:element"/>
+            </subModelOperations>
+          </firstModelOperation>
+          <oldContainer name="oldContainer"/>
+          <newContainer name="newContainer"/>
+          <element name="element"/>
+          <newViewContainer name="newViewContainer"/>
+          <precedingSiblings name="precedingSiblings" documentation="The list of all the preceding siblings in a Drag and Drop operation"/>
+        </dropTools>
+        <create name="new ResourcesDeclaration of SwitchingTask" forceRefresh="true" mapping="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='HardwareClassModel']/@subItemMappings[name='SwitchingTask']/@subItemMappings[name='ResourcesDeclaration']">
+          <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="var:element">
+            <subModelOperations xsi:type="tool:CreateInstance" typeName="placer.ResourcesDeclaration" referenceName="resourcesDeclarations">
+              <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="HardwareClassModel">
+                <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                  <initialOperation/>
+                </buttons>
+                <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                  <initialOperation/>
+                </buttons>
+                <page name="New ResourcesDeclaration" labelExpression="New ResourcesDeclaration" domainClass="placer.ResourcesDeclaration" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='HardwareClassModel']/@subItemMappings[name='SwitchingTask']/@create.0/@firstModelOperation/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+                <groups name="new ResourcesDeclaration" labelExpression="Properties" domainClass="placer.ResourcesDeclaration" semanticCandidateExpression="var:self">
+                  <controls xsi:type="properties:TextDescription" name="Name" labelExpression="Name : " helpExpression="String Excepted" valueExpression="aql:self.name">
+                    <initialOperation>
+                      <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                        <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="var:newValue"/>
+                      </firstModelOperations>
+                    </initialOperation>
+                  </controls>
+                </groups>
+              </subModelOperations>
+            </subModelOperations>
+          </firstModelOperation>
+          <variables name="root" documentation="The semantic element of the tree."/>
+          <variables name="element" documentation="The currently edited element."/>
+          <variables name="container" documentation="The semantic element corresponding to the view container."/>
+        </create>
+        <create name="new PropertiesDeclaration of SwitchingTask" forceRefresh="true" mapping="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='HardwareClassModel']/@subItemMappings[name='SwitchingTask']/@subItemMappings[name='PropertiesDeclaration']">
+          <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="var:element">
+            <subModelOperations xsi:type="tool:CreateInstance" typeName="placer.PropertiesDeclaration" referenceName="propertiesDeclarations">
+              <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="HardwareClassModel">
+                <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                  <initialOperation/>
+                </buttons>
+                <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                  <initialOperation/>
+                </buttons>
+                <page name="New PropertiesDeclaration" labelExpression="New PropertiesDeclaration" domainClass="placer.PropertiesDeclaration" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='HardwareClassModel']/@subItemMappings[name='SwitchingTask']/@create.1/@firstModelOperation/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+                <groups name="new PropertiesDeclaration" labelExpression="Properties" domainClass="placer.PropertiesDeclaration" semanticCandidateExpression="var:self">
+                  <controls xsi:type="properties:TextDescription" name="Name" labelExpression="Name : " helpExpression="String Excepted" valueExpression="aql:self.name">
+                    <initialOperation>
+                      <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                        <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="var:newValue"/>
+                      </firstModelOperations>
+                    </initialOperation>
+                  </controls>
+                </groups>
+              </subModelOperations>
+            </subModelOperations>
+          </firstModelOperation>
+          <variables name="root" documentation="The semantic element of the tree."/>
+          <variables name="element" documentation="The currently edited element."/>
+          <variables name="container" documentation="The semantic element corresponding to the view container."/>
+        </create>
+      </subItemMappings>
+      <createTreeItem name="new MultiTaskPermanentTasks" forceRefresh="true" mapping="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='HardwareClassModel']/@subItemMappings[name='MultiTaskPermanentTasks']">
+        <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="var:element">
+          <subModelOperations xsi:type="tool:CreateInstance" typeName="placer.MultiTaskPermanentTasks" referenceName="processingElementClasses">
+            <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="HardwareClassModel">
+              <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                <initialOperation/>
+              </buttons>
+              <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                <initialOperation/>
+              </buttons>
+              <page name="New MultiTaskPermanentTasks" labelExpression="New MultiTaskPermanentTasks" domainClass="placer.MultiTaskPermanentTasks" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='HardwareClassModel']/@createTreeItem.0/@firstModelOperation/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+              <groups name="new MultiTaskPermanentTasks" labelExpression="Properties" domainClass="placer.MultiTaskPermanentTasks" semanticCandidateExpression="var:self">
+                <controls xsi:type="properties:TextDescription" name="Name" labelExpression="Name : " helpExpression="String Excepted" valueExpression="aql:self.name">
+                  <initialOperation>
+                    <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                      <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="var:newValue"/>
+                    </firstModelOperations>
+                  </initialOperation>
+                </controls>
+              </groups>
+            </subModelOperations>
+          </subModelOperations>
+        </firstModelOperation>
+        <variables name="root" documentation="The semantic element of the tree."/>
+        <variables name="element" documentation="The currently edited element."/>
+        <variables name="container" documentation="The semantic element corresponding to the view container."/>
+      </createTreeItem>
+      <createTreeItem name="new SwitchingTask" forceRefresh="true" mapping="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='HardwareClassModel']/@subItemMappings[name='SwitchingTask']">
+        <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="var:container">
+          <subModelOperations xsi:type="tool:CreateInstance" typeName="placer.SwitchingTask" referenceName="processingElementClasses">
+            <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="HardwareClassModel">
+              <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                <initialOperation/>
+              </buttons>
+              <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                <initialOperation/>
+              </buttons>
+              <page name="New SwitchingTask" labelExpression="New SwitchingTask" domainClass="placer.SwitchingTask" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='HardwareClassModel']/@createTreeItem.1/@firstModelOperation/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+              <groups name="new SwitchingTask" labelExpression="Properties" domainClass="placer.SwitchingTask" semanticCandidateExpression="var:self">
+                <controls xsi:type="properties:TextDescription" name="Name" labelExpression="Name : " helpExpression="String Excepted" valueExpression="aql:self.name">
+                  <initialOperation>
+                    <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                      <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="var:newValue"/>
+                    </firstModelOperations>
+                  </initialOperation>
+                </controls>
+                <controls xsi:type="properties:TextDescription" name="SwitchingDelay" labelExpression="SwitchingDelay : " helpExpression="Integer Excepted" valueExpression="aql:self.switchingDelay">
+                  <initialOperation>
+                    <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                      <subModelOperations xsi:type="tool:SetValue" featureName="switchingDelay" valueExpression="var:newValue"/>
+                    </firstModelOperations>
+                  </initialOperation>
+                </controls>
+              </groups>
+            </subModelOperations>
+          </subModelOperations>
+        </firstModelOperation>
+        <variables name="root" documentation="The semantic element of the tree."/>
+        <variables name="element" documentation="The currently edited element."/>
+        <variables name="container" documentation="The semantic element corresponding to the view container."/>
+      </createTreeItem>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_2:DiagramDescription" dropDescriptions="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='TaskGlobalAndTaskGroup']" name="Software Diagram" initialisation="true" showOnStartup="true" domainClass="placer.Global" rootExpression="Software Diagram" enablePopupBars="true">
+      <metamodel href="http://www.example.org/placer#/"/>
+      <filters xsi:type="filter:CompositeFilterDescription" name="Without transmissions">
+        <filters xsi:type="filter:MappingFilter" mappings="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@edgeMappings[name='transmission']" semanticConditionExpression="false"/>
+      </filters>
+      <filters xsi:type="filter:CompositeFilterDescription" name="Without Implementations">
+        <filters xsi:type="filter:MappingFilter" mappings="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@containerMappings[name='task']/@subContainerMappings[name='implementation']" semanticConditionExpression="false"/>
+      </filters>
+      <filters xsi:type="filter:CompositeFilterDescription" name="Without ResourcesUsages and Parameters">
+        <filters xsi:type="filter:MappingFilter" mappings="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@containerMappings[name='task']/@subContainerMappings[name='implementation']/@subNodeMappings[name='parameters'] //@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@containerMappings[name='task']/@subContainerMappings[name='implementation']/@subNodeMappings[name='resourcesUsage']" semanticConditionExpression="false"/>
+      </filters>
+      <validationSet name="Software" reusedRules="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@validationSet/@ownedRules[name='CO-AcreationGlobalInformation'] //@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@validationSet/@ownedRules[name='CO-AsameNameGlobalProperties'] //@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@validationSet/@ownedRules[name='CO-AsameUseMustBeUsed'] //@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@validationSet/@ownedRules[name='CO-AsameUseRunOn'] //@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@validationSet/@ownedRules[name='CO-AvalidationEnergyCap'] //@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@validationSet/@ownedRules[name='CO-AvalidationGlobalInformation'] //@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@validationSet/@ownedRules[name='CO-AvalidationGlobalProperties'] //@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@validationSet/@ownedRules[name='CO-AvalidationMaxMakeSpan'] //@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@validationSet/@ownedRules[name='CO-AvalidationMustBeUsed'] //@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@validationSet/@ownedRules[name='CO-AvalidationPowerCap'] //@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@validationSet/@ownedRules[name='CO-AvalidationRunOn'] //@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@validationSet/@ownedRules[name='CO-AvalidationSamePE'] //@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@validationSet/@ownedRules[name='CO-AvalidationSymetricPE']">
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="HC-AcreationProcessingElementClass" level="ERROR" message="aql:'You must create a ProcessingElementClass in the HardwareClassModel'" targetClass="placer.Global">
+          <audits auditExpression="service:creationProcessingElementClass()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="HC-SvalidationSoftwareProcessingElementClass" level="WARNING" message="aql:'The target &quot;'+self.target.name+'&quot; of the Implementation &quot;'+self.name+'&quot; lack of informations'" targetClass="placer.Implementation">
+          <audits auditExpression="service:validationSoftwareProcessingElementClass()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="HC-AsameNameProcessingElementClass" level="WARNING" message="aql:'At least 2 ProcessingElementClass have the same name'" targetClass="placer.Global">
+          <audits auditExpression="service:sameNameProcessingElementClass()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="HC-SvalidationSoftwareResourcesDeclaration" level="WARNING" message="aql:'The name of the ResourcesUsages &quot;'+self.name.name+'&quot; lack of informations'" targetClass="placer.ResourcesUsage">
+          <audits auditExpression="service:validationSoftwareResourcesDeclaration()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="HC-AsameNameDeclaration" level="WARNING" message="aql:'At least 2 PropertiesDeclaration/ResourcesDefinition have the same name'" targetClass="placer.Global">
+          <audits auditExpression="service:sameNameDeclaration()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="ScreationTask" level="ERROR" message="aql:'At least 1 Task must be created'" targetClass="placer.Global">
+          <audits auditExpression="service:creationTask()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="ScreationImplementation" level="ERROR" message="aql:'The Task &quot;'+self.name+'&quot; must have at least 1 Implementation'" targetClass="placer.Task">
+          <audits auditExpression="service:creationImplementation()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="SvalidationTaskGroup" level="WARNING" message="aql:' nbInstance of TaskGroup must be upper than 1'" targetClass="placer.TaskGroup">
+          <audits auditExpression="service:validationTaskGroup()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="SvalidationTask" level="WARNING" message="aql:'Task &quot;'+self.name+'&quot; lack its name'" targetClass="placer.Task">
+          <audits auditExpression="service:validationTask()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="SvalidationTransmission" level="WARNING" message="aql:'A Transmission lack of informations'" targetClass="placer.Transmission">
+          <audits auditExpression="service:validationTransmission()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="SvalidationImplementation" level="WARNING" message="aql:'The Implementation &quot;'+self.name+'&quot; lack of informations for the Task &quot;'+self.eContainer().name+'&quot;'" targetClass="placer.Implementation">
+          <audits auditExpression="service:validationImplementation()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="SvalidationResourcesUsage" level="WARNING" message="aql:'The ResourcesUsage&quot;'+self.name+'&quot; of the Implementation &quot;'+self.eContainer().name+'&quot; of the Task &quot;'+self.eContainer().eContainer().name+'&quot; lack of informations'" targetClass="placer.ResourcesUsage">
+          <audits auditExpression="service:validationResourcesUsage()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="SvalidationParameters" level="WARNING" message="aql:'The Parameter&quot;'+self.name+'&quot; of the Implementation &quot;'+self.eContainer().name+'&quot; of the Task &quot;'+self.eContainer().eContainer().name+'&quot; lack of informations'" targetClass="placer.Parameters">
+          <audits auditExpression="service:validationParameters()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="SsameNameTask" level="WARNING" message="aql:'The Task &quot;'+self.name+'&quot; has the same name than another Task'" targetClass="placer.Task">
+          <audits auditExpression="service:sameNameTask()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="SsameNameImplementation" level="WARNING" message="aql:'The Implementation &quot;'+self.name+'&quot; has the same name than another Implementation'" targetClass="placer.Implementation">
+          <audits auditExpression="service:sameNameImplementation()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="SsameNameResourcesUsageParameters" level="WARNING" message="aql:'The ResourcesUsage/Parameters &quot;'+self.name+'&quot; has the same name than another ResourcesUsage/Parameters'" targetClass="placer.Implementation">
+          <audits auditExpression="service:sameNameResourcesUsageParameters()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="SloopTask" level="ERROR" message="aql:'The Task &quot;'+self.name+'&quot; must not have a return on itself'" targetClass="placer.Task">
+          <audits auditExpression="service:loopTask()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="SconditionAlap" level="ERROR" message="aql:'It is impossible to have two transmissions &quot;Alap&quot; in input for a Task'" targetClass="placer.Transmission">
+          <audits auditExpression="service:conditionAlap()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="SconditionAsap" level="ERROR" message="aql:'It is impossible to have two transmissions &quot;Asap&quot; in output for a Task'" targetClass="placer.Transmission">
+          <audits auditExpression="service:conditionAsap()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="SvalidationImplementationResourcesProperties" level="ERROR" message="aql:'The Implementation &quot;'+self.name+'&quot; must have the resourcesUsage corresponding to its class'" targetClass="placer.Implementation">
+          <audits auditExpression="service:validationImplementationResourcesProperties()"/>
+        </ownedRules>
+      </validationSet>
+      <defaultLayer name="Default">
+        <edgeMappings name="transmission" preconditionExpression="service:conditionCreationTransmission()" deletionDescription="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='transmission']" sourceMapping="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@containerMappings[name='task'] //@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@containerMappings[name='taskGroup']/@subContainerMappings[name='task']" targetMapping="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@containerMappings[name='task'] //@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@containerMappings[name='taskGroup']/@subContainerMappings[name='task']" targetFinderExpression="feature:to" sourceFinderExpression="feature:from" domainClass="placer.Transmission" useDomainElement="true" reconnections="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='SourceTransmission'] //@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='TargetTransmission']">
+          <style sizeComputationExpression="4" routingStyle="manhattan" endsCentering="Both">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
+            <centerLabelStyleDescription showIcon="false" labelExpression="aql:self.timing.toString()">
+              <labelFormat>bold</labelFormat>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <containerMappings name="taskGroup" preconditionExpression="service:conditionCreationTaskGroup()" deletionDescription="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='taskGroup']" semanticCandidatesExpression="feature:taskGroups" domainClass="placer.TaskGroup" dropDescriptions="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='TaskGlobalAndTaskGroup']">
+          <subContainerMappings name="task" preconditionExpression="service:conditionCreationTask()" deletionDescription="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='task']" semanticCandidatesExpression="feature:taskTaskGroups" domainClass="placer.Task" dropDescriptions="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='implementation']" reusedContainerMappings="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@containerMappings[name='task']/@subContainerMappings[name='implementation']" childrenPresentation="HorizontalStack">
+            <style xsi:type="style:FlatContainerStyleDescription" arcWidth="6" arcHeight="6" borderSizeComputationExpression="1" showIcon="false" labelExpression="aql:self.name" widthComputationExpression="12">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelFormat>bold</labelFormat>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
+            </style>
+          </subContainerMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="16" showIcon="false" labelExpression="aql:self.nbInstances+' '" labelAlignment="RIGHT" widthComputationExpression="20" heightComputationExpression="30">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>bold</labelFormat>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_blue']"/>
+          </style>
+        </containerMappings>
+        <containerMappings name="task" preconditionExpression="service:conditionCreationTask()" deletionDescription="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='task']" semanticCandidatesExpression="feature:tasks" domainClass="placer.Task" dropDescriptions="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='implementation']" childrenPresentation="HorizontalStack">
+          <subContainerMappings name="implementation" preconditionExpression="service:conditionCreationImplementation()" semanticCandidatesExpression="feature:implementations" domainClass="placer.Implementation" dropDescriptions="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='resourcesUsage'] //@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='parameters']" childrenPresentation="List">
+            <subNodeMappings name="parameters" preconditionExpression="service:conditionCreationParamaters()" semanticCandidatesExpression="feature:parameters" domainClass="placer.Parameters">
+              <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="service:displayParameters()" labelPosition="node">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+              </style>
+            </subNodeMappings>
+            <subNodeMappings name="resourcesUsage" preconditionExpression="service:conditionCreationResourcesUsages()" semanticCandidatesExpression="feature:resourcesUsages" domainClass="placer.ResourcesUsage">
+              <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="service:displayResourcesUsage()" labelPosition="node">
+                <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+                <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+                <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+              </style>
+            </subNodeMappings>
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" showIcon="false" labelExpression="service:displayImplementation()">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_blue']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_blue']"/>
+            </style>
+          </subContainerMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" arcWidth="6" arcHeight="6" borderSizeComputationExpression="1" showIcon="false" widthComputationExpression="12">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>bold</labelFormat>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='blue']"/>
+          </style>
+        </containerMappings>
+        <toolSections name="Creation">
+          <ownedTools xsi:type="tool_1:ContainerCreationDescription" name="New TaskGroup" forceRefresh="true" containerMappings="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@containerMappings[name='taskGroup']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool:CreateInstance" typeName="placer.TaskGroup" referenceName="taskGroups">
+                  <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Software Model">
+                    <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                      <initialOperation/>
+                    </buttons>
+                    <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                      <initialOperation/>
+                    </buttons>
+                    <page name="New TaskGroup" labelExpression="New TaskGroup" domainClass="placer.TaskGroup" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='New%20TaskGroup']/@initialOperation/@firstModelOperations/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+                    <groups name="new TaskGroup" labelExpression="Properties" domainClass="placer.TaskGroup" semanticCandidateExpression="var:self">
+                      <controls xsi:type="properties:TextDescription" name="NbInstances" labelExpression="NbInstances : " helpExpression="Integer Excepted" valueExpression="aql:self.nbInstances">
+                        <initialOperation>
+                          <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                            <subModelOperations xsi:type="tool:SetValue" featureName="nbInstances" valueExpression="var:newValue"/>
+                          </firstModelOperations>
+                        </initialOperation>
+                      </controls>
+                    </groups>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ContainerCreationDescription" name="New Task" forceRefresh="true" containerMappings="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@containerMappings[name='task'] //@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@containerMappings[name='taskGroup']/@subContainerMappings[name='task']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool:Switch">
+                  <cases conditionExpression="service:conditionTaskGlobal()">
+                    <subModelOperations xsi:type="tool:CreateInstance" typeName="placer.Task" referenceName="taskTaskGroups">
+                      <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Software Model">
+                        <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                          <initialOperation/>
+                        </buttons>
+                        <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                          <initialOperation/>
+                        </buttons>
+                        <page name="New Task" labelExpression="New Task" domainClass="placer.Task" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='New%20Task']/@initialOperation/@firstModelOperations/@subModelOperations.0/@cases.0/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+                        <groups name="new Task" labelExpression="Properties" domainClass="placer.Task" semanticCandidateExpression="var:self">
+                          <controls xsi:type="properties:TextDescription" name="NameTask" labelExpression="Name :" helpExpression="String Excepted" valueExpression="aql:self.name">
+                            <initialOperation>
+                              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                                <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="var:newValue"/>
+                              </firstModelOperations>
+                            </initialOperation>
+                          </controls>
+                        </groups>
+                      </subModelOperations>
+                    </subModelOperations>
+                  </cases>
+                  <default>
+                    <subModelOperations xsi:type="tool:CreateInstance" typeName="placer.Task" referenceName="tasks">
+                      <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Software Model">
+                        <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                          <initialOperation/>
+                        </buttons>
+                        <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                          <initialOperation/>
+                        </buttons>
+                        <page name="New Task" labelExpression="New Task" domainClass="placer.Task" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='New%20Task']/@initialOperation/@firstModelOperations/@subModelOperations.0/@default/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+                        <groups name="new Task" labelExpression="Properties" domainClass="placer.Task" semanticCandidateExpression="var:self">
+                          <controls xsi:type="properties:TextDescription" name="NameTask" labelExpression="Name :" helpExpression="Task Name" valueExpression="aql:self.name">
+                            <initialOperation>
+                              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                                <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="var:newValue"/>
+                              </firstModelOperations>
+                            </initialOperation>
+                          </controls>
+                        </groups>
+                      </subModelOperations>
+                    </subModelOperations>
+                  </default>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:EdgeCreationDescription" name="New Transmission" forceRefresh="true" edgeMappings="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@edgeMappings[name='transmission']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:CreateInstance" typeName="placer.Transmission" referenceName="transmissions">
+                <subModelOperations xsi:type="tool:SetValue" featureName="from" valueExpression="var:source"/>
+                <subModelOperations xsi:type="tool:SetValue" featureName="to" valueExpression="var:target"/>
+                <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Software Model">
+                  <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                    <initialOperation/>
+                  </buttons>
+                  <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                    <initialOperation/>
+                  </buttons>
+                  <page name="New Transmission" labelExpression="New Transmission" domainClass="placer.Transmission" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='New%20Transmission']/@initialOperation/@firstModelOperations/@subModelOperations.2/@groups.0"/>
+                  <groups name="new Transmission" labelExpression="Properties" domainClass="placer.Transmission" semanticCandidateExpression="var:self">
+                    <controls xsi:type="properties:TextDescription" name="Amount" labelExpression="Amount : " helpExpression="Integer Excepted" valueExpression="aql:self.amount">
+                      <initialOperation>
+                        <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                          <subModelOperations xsi:type="tool:SetValue" featureName="amount" valueExpression="var:newValue"/>
+                        </firstModelOperations>
+                      </initialOperation>
+                    </controls>
+                    <controls xsi:type="properties:RadioDescription" name="Timing" labelExpression="Timing : " helpExpression="TimingObject Excepted" isEnabledExpression="aql:self.eClass().getEStructuralFeature('timing').changeable" valueExpression="aql:self.eClass().getEStructuralFeature('timing').eType.getEEnumLiteralByLiteral(self.timing.toString())" candidatesExpression="aql:self.eClass().getEStructuralFeature('timing').eType.eLiterals" candidateDisplayExpression="aql:candidate.name" numberOfColumns="5">
+                      <initialOperation>
+                        <firstModelOperations xsi:type="tool:SetValue" featureName="timing" valueExpression="aql:newValue.instance"/>
+                      </initialOperation>
+                    </controls>
+                  </groups>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ContainerCreationDescription" name="New Implementation" forceRefresh="true" containerMappings="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@containerMappings[name='task']/@subContainerMappings[name='implementation']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool:CreateInstance" typeName="placer.Implementation" referenceName="implementations">
+                  <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Software Model">
+                    <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                      <initialOperation/>
+                    </buttons>
+                    <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                      <initialOperation/>
+                    </buttons>
+                    <page name="New Implementation" labelExpression="New Implementation" domainClass="placer.Implementation" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='New%20Implementation']/@initialOperation/@firstModelOperations/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+                    <groups name="new Implementation" labelExpression="Properties" domainClass="placer.Implementation" semanticCandidateExpression="var:self">
+                      <controls xsi:type="properties:TextDescription" name="Name" labelExpression="Name : " helpExpression="String Excepted" valueExpression="aql:self.name">
+                        <initialOperation>
+                          <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                            <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="var:newValue"/>
+                          </firstModelOperations>
+                        </initialOperation>
+                      </controls>
+                      <controls xsi:type="properties:TextDescription" name="Duration" labelExpression="Duration : " helpExpression="String Excepted" valueExpression="aql:self.duration">
+                        <initialOperation>
+                          <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                            <subModelOperations xsi:type="tool:SetValue" featureName="duration" valueExpression="var:newValue"/>
+                          </firstModelOperations>
+                        </initialOperation>
+                      </controls>
+                      <controls xsi:type="properties-ext-widgets-reference:ExtReferenceDescription" name="Target" labelExpression="Target : " helpExpression="ProcessingElementClass Excepted" referenceNameExpression="target">
+                        <onClickOperation>
+                          <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                            <subModelOperations xsi:type="tool:SetValue" featureName="target" valueExpression="var:newValue"/>
+                          </firstModelOperations>
+                        </onClickOperation>
+                      </controls>
+                      <controls xsi:type="properties:TextDescription" name="ComputationMemory" labelExpression="ComputationMemory : " helpExpression="String Excepted" valueExpression="aql:self.computationMemory">
+                        <initialOperation>
+                          <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                            <subModelOperations xsi:type="tool:SetValue" featureName="computationMemory" valueExpression="var:newValue"/>
+                          </firstModelOperations>
+                        </initialOperation>
+                      </controls>
+                    </groups>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:NodeCreationDescription" name="New ResourcesUsage" forceRefresh="true" nodeMappings="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@containerMappings[name='task']/@subContainerMappings[name='implementation']/@subNodeMappings[name='resourcesUsage']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool:CreateInstance" typeName="placer.ResourcesUsage" referenceName="resourcesUsages">
+                  <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Software Model">
+                    <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                      <initialOperation/>
+                    </buttons>
+                    <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                      <initialOperation/>
+                    </buttons>
+                    <page name="New ResourcesUsage" labelExpression="New ResourcesUsage" domainClass="placer.ResourcesUsage" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='New%20ResourcesUsage']/@initialOperation/@firstModelOperations/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+                    <groups name="new ResourcesUsage" labelExpression="Properties" domainClass="placer.ResourcesUsage" semanticCandidateExpression="var:self">
+                      <controls xsi:type="properties-ext-widgets-reference:ExtReferenceDescription" name="Name" labelExpression="Name : " helpExpression="String Excepted" referenceNameExpression="name">
+                        <onClickOperation>
+                          <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                            <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="var:newValue"/>
+                          </firstModelOperations>
+                        </onClickOperation>
+                      </controls>
+                      <controls xsi:type="properties:TextDescription" name="Formula" labelExpression="Formula : " helpExpression="String Excepted" valueExpression="aql:self.formula">
+                        <initialOperation>
+                          <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                            <subModelOperations xsi:type="tool:SetValue" featureName="formula" valueExpression="var:newValue"/>
+                          </firstModelOperations>
+                        </initialOperation>
+                      </controls>
+                    </groups>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:NodeCreationDescription" name="New Parameters" forceRefresh="true" nodeMappings="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@containerMappings[name='task']/@subContainerMappings[name='implementation']/@subNodeMappings[name='parameters']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool:CreateInstance" typeName="placer.Parameters" referenceName="parameters">
+                  <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Software Model">
+                    <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                      <initialOperation/>
+                    </buttons>
+                    <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                      <initialOperation/>
+                    </buttons>
+                    <page name="New Parameters" labelExpression="New Parameters" domainClass="placer.Parameters" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='New%20Parameters']/@initialOperation/@firstModelOperations/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+                    <groups name="new Parameters" labelExpression="Properties" domainClass="placer.Parameters" semanticCandidateExpression="var:self">
+                      <controls xsi:type="properties:TextDescription" name="Name" labelExpression="Name : " helpExpression="String Excepted" valueExpression="aql:self.name">
+                        <initialOperation>
+                          <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                            <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="var:newValue"/>
+                          </firstModelOperations>
+                        </initialOperation>
+                      </controls>
+                      <controls xsi:type="properties:ListDescription" name="Value" labelExpression="Value : " helpExpression="Integer List Excepted" isEnabledExpression="aql:self.eClass().getEStructuralFeature('value').changeable" valueExpression="aql:self.value" displayExpression="var:value">
+                        <actions>
+                          <initialOperation/>
+                        </actions>
+                      </controls>
+                    </groups>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ReconnectEdgeDescription" name="SourceTransmission" forceRefresh="true" reconnectionKind="RECONNECT_SOURCE">
+            <source name="source"/>
+            <target name="target"/>
+            <sourceView name="sourceView"/>
+            <targetView name="targetView"/>
+            <element name="element"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool:SetValue" featureName="from" valueExpression="var:target">
+                  <subModelOperations xsi:type="tool:MoveElement" newContainerExpression="aql:self.from" featureName="transmissions"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+            <edgeView name="edgeView"/>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ReconnectEdgeDescription" name="TargetTransmission" forceRefresh="true">
+            <source name="source"/>
+            <target name="target"/>
+            <sourceView name="sourceView"/>
+            <targetView name="targetView"/>
+            <element name="element"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool:SetValue" featureName="to" valueExpression="var:target"/>
+              </firstModelOperations>
+            </initialOperation>
+            <edgeView name="edgeView"/>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ContainerDropDescription" name="TaskGlobalAndTaskGroup" forceRefresh="true" mappings="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@containerMappings[name='task'] //@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@containerMappings[name='taskGroup']/@subContainerMappings[name='task']">
+            <oldContainer name="oldSemanticContainer"/>
+            <newContainer name="newSemanticContainer"/>
+            <element name="element"/>
+            <newViewContainer name="newContainerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="aql:newSemanticContainer">
+                <subModelOperations xsi:type="tool:Switch">
+                  <cases conditionExpression="service:conditionTaskTaskGroup(element)">
+                    <subModelOperations xsi:type="tool:SetValue" featureName="taskTaskGroups" valueExpression="var:element"/>
+                  </cases>
+                  <default>
+                    <subModelOperations xsi:type="tool:SetValue" featureName="tasks" valueExpression="var:element"/>
+                  </default>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ContainerDropDescription" name="implementation" forceRefresh="true" mappings="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@containerMappings[name='task']/@subContainerMappings[name='implementation']">
+            <oldContainer name="oldSemanticContainer"/>
+            <newContainer name="newSemanticContainer"/>
+            <element name="element"/>
+            <newViewContainer name="newContainerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="[newSemanticContainer/]">
+                <subModelOperations xsi:type="tool:SetValue" featureName="implementations" valueExpression="var:element"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ContainerDropDescription" name="resourcesUsage" forceRefresh="true" mappings="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@containerMappings[name='task']/@subContainerMappings[name='implementation']/@subNodeMappings[name='resourcesUsage']">
+            <oldContainer name="oldSemanticContainer"/>
+            <newContainer name="newSemanticContainer"/>
+            <element name="element"/>
+            <newViewContainer name="newContainerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="[newSemanticContainer/]">
+                <subModelOperations xsi:type="tool:SetValue" featureName="resourcesUsages" valueExpression="var:element"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ContainerDropDescription" name="parameters" forceRefresh="true" mappings="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@defaultLayer/@containerMappings[name='task']/@subContainerMappings[name='implementation']/@subNodeMappings[name='parameters']">
+            <oldContainer name="oldSemanticContainer"/>
+            <newContainer name="newSemanticContainer"/>
+            <element name="element"/>
+            <newViewContainer name="newContainerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="[newSemanticContainer/]">
+                <subModelOperations xsi:type="tool:SetValue" featureName="parameters" valueExpression="var:element"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:DeleteElementDescription" name="taskGroup" forceRefresh="true">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool:RemoveElement"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:DeleteElementDescription" name="task" forceRefresh="true">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool:Unset" featureName="verificationTransmissionAll" elementExpression="service:verificationTransmissionsAll()"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:DeleteElementDescription" name="transmission" forceRefresh="true">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool:RemoveElement"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:DeleteElementDescription" name="implementation" forceRefresh="true">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool:RemoveElement"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:DeleteElementDescription" name="resourcesUsage" forceRefresh="true">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool:RemoveElement"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:DeleteElementDescription" name="parameters" forceRefresh="true">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool:RemoveElement"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </defaultLayer>
+      <additionalLayers name="JSON" activeByDefault="true" optional="false">
+        <toolSections name="Generation">
+          <ownedTools xsi:type="tool:OperationAction" name="Generation in .json" forceRefresh="true" icon="/org.eclipse.sirius.samples.family/icons/1200px-JSON_vector_logo.png">
+            <view name="views"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="properties:DialogModelOperation" titleExpression="All Model">
+                <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                  <initialOperation/>
+                </buttons>
+                <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                  <initialOperation>
+                    <firstModelOperations xsi:type="tool:Switch">
+                      <cases conditionExpression="service:json()">
+                        <subModelOperations xsi:type="tool:ChangeContext" browseExpression="service:building()"/>
+                      </cases>
+                      <default>
+                        <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="All Model">
+                          <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                            <initialOperation/>
+                          </buttons>
+                          <page name="Problem in the diagrams generation in JSON" labelExpression="To see your errors, click on the right button of your mouse and select &quot;Validate Diagram&quot; in the Software Diagram and in the Hardware Diagram." semanticCandidateExpression="var:self"/>
+                        </subModelOperations>
+                      </default>
+                    </firstModelOperations>
+                  </initialOperation>
+                </buttons>
+                <page name="Diagrams generation in JSON" labelExpression="Diagrams generation in JSON" domainClass="placer.Global" semanticCandidateExpression="var:self"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:OperationAction" name="ffvfd">
+            <view name="views"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="service:vzvdzjh()">
+                <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="New Dialog">
+                  <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                    <initialOperation/>
+                  </buttons>
+                  <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                    <initialOperation/>
+                  </buttons>
+                  <page name="Default Page" labelExpression="Page" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@additionalLayers[name='JSON']/@toolSections.0/@ownedTools[name='ffvfd']/@initialOperation/@firstModelOperations/@subModelOperations.0/@groups.0"/>
+                  <groups name="Default Group" labelExpression="Group" semanticCandidateExpression="var:self"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </additionalLayers>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_2:DiagramDescription" name="Hardware Diagram" initialisation="true" showOnStartup="true" domainClass="placer.Global" rootExpression="Hardware Diagram" enablePopupBars="true">
+      <metamodel href="http://www.example.org/placer#/"/>
+      <filters xsi:type="filter:CompositeFilterDescription" name="Without connections">
+        <filters xsi:type="filter:MappingFilter" mappings="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@defaultLayer/@edgeMappings[name='connection']" semanticConditionExpression="false"/>
+      </filters>
+      <filters xsi:type="filter:CompositeFilterDescription" name="Without resources and properties">
+        <filters xsi:type="filter:MappingFilter" mappings="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@defaultLayer/@containerMappings[name='processingElement']/@subNodeMappings[name='propertiesDefinition'] //@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@defaultLayer/@containerMappings[name='processingElement']/@subNodeMappings[name='resourcesDefinition']" semanticConditionExpression="false"/>
+      </filters>
+      <validationSet name="Hardware" reusedRules="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@validationSet/@ownedRules[name='HC-AcreationProcessingElementClass'] //@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@validationSet/@ownedRules[name='HC-AsameNameDeclaration'] //@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Software%20Diagram']/@validationSet/@ownedRules[name='HC-AsameNameProcessingElementClass']">
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="HC-HvalidationHardwareProcessingElementClass" level="WARNING" message="aql:'ProcessingElementClass&quot;'+self.class.name+'&quot; of the ProcessingElement &quot;'+self.name+'&quot; lack of informations'" targetClass="placer.ProcessingElement">
+          <audits auditExpression="service:validationHardwareProcessingElementClass()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="HC-HvalidationHardwareResourcesDeclaration" level="WARNING" message="aql:'The name of the ResourcesDefinition &quot;'+self.name+'&quot; lack of informations'" targetClass="placer.ResourcesDefinition">
+          <audits auditExpression="service:validationHardwareResourcesDeclaration()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="HC-HvalidationHardwarePropertiesDeclaration" level="WARNING" message="aql:'The name of the PropertiesDefinition &quot;'+self.name.name+'&quot; lack of informations'" targetClass="placer.PropertiesDefinition">
+          <audits auditExpression="service:validationHardwarePropertiesDeclaration()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="HvalidationAtLeastOneProcessingElement" level="ERROR" message="aql:'You must create a ProcessingElement in the HardwareModel'" targetClass="placer.Global">
+          <audits auditExpression="service:validationAtLeastOneProcessingElement()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="HvalidationAtLeastOneConnectionForEachBus" level="ERROR" message="aql:'You must create at least one connection with the Bus &quot;'+self.name+'&quot;'" targetClass="placer.Bus">
+          <audits auditExpression="service:validationAtLeastOneConnectionForEachBus()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="HvalidationProcessingElement" level="WARNING" message="aql:'The ProcessingElement &quot;'+self.name+'&quot; lack of informations '" targetClass="placer.ProcessingElement">
+          <audits auditExpression="service:validationProcessingElement()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="HvalidationBus" level="WARNING" message="aql:'The Bus &quot;'+self.name+'&quot; lack of informations '" targetClass="placer.Bus">
+          <audits auditExpression="service:validationBus()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="HvalidationResourcesDefinition" level="WARNING" message="aql:'The ResourcesDefinition &quot;'+self.name+'&quot; lack of informations '" targetClass="placer.ResourcesDefinition">
+          <audits auditExpression="service:validationResourcesDefinition()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="HvalidationPropertiesDefinition" level="WARNING" message="aql:'The PropertiesDefinition &quot;'+self.name+'&quot; lack of informations '" targetClass="placer.PropertiesDefinition">
+          <audits auditExpression="service:validationPropertiesDefinition()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="HsameNameProcessingElement" level="WARNING" message="aql:'The ProcessingElement &quot;'+self.name+'&quot; has the same name than another ProcessingElement'" targetClass="placer.ProcessingElement">
+          <audits auditExpression="service:sameNameProcessingElement()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="HsameNameBus" level="WARNING" message="aql:'The Bus &quot;'+self.name+'&quot; has the same name than another Bus'" targetClass="placer.Bus">
+          <audits auditExpression="service:sameNameBus()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="HsameNameDefinition" level="WARNING" message="aql:'The ResourcesDefinition/PropertiesDefinition &quot;'+self.name+'&quot; has the same name than another ResourcesDefinition/PropertiesDefinition'" targetClass="placer.ProcessingElement">
+          <audits auditExpression="service:sameNameDefinition()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="HvalidationProcessingElementResourcesProperties" level="ERROR" message="aql:'The Processing Element &quot;'+self.name+'&quot; must have the resources and properties corresponding to its class'" targetClass="placer.ProcessingElement">
+          <audits auditExpression="service:validationProcessingElementResourcesProperties()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="CO-AcreationGlobalInformation" level="ERROR" message="aql:'You have to created 1 GlobalInformation'" targetClass="placer.Global">
+          <audits auditExpression="service:creationGlobalInformation()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="CO-AvalidationMustBeUsed" level="WARNING" message="aql:'At least one MustBeUsed lack of informations '" targetClass="placer.Global">
+          <audits auditExpression="service:validationMustBeUsed()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="CO-AvalidationSamePE" level="WARNING" message="aql:'At least one SamePE lack of informations'" targetClass="placer.Global">
+          <audits auditExpression="service:validationSamePE()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="CO-AvalidationSymetricPE" level="WARNING" message="aql:'At least one SymetricPE lack of informations'" targetClass="placer.Global">
+          <audits auditExpression="service:validationSymetricPE()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="CO-AvalidationRunOn" level="WARNING" message="aql:'At least one RunOn lack of informations '" targetClass="placer.Global">
+          <audits auditExpression="service:validationRunOn()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="CO-AvalidationPowerCap" level="WARNING" message="aql:'The PowerCap lack of informations '" targetClass="placer.Global">
+          <audits auditExpression="service:validationPowerCap()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="CO-AvalidationEnergyCap" level="WARNING" message="aql:'The EnergyCap lack of informations'" targetClass="placer.Global">
+          <audits auditExpression="service:validationEnergyCap()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="CO-AvalidationMaxMakeSpan" level="WARNING" message="aql:'The MaxMakeSpan lack of informations'" targetClass="placer.Global">
+          <audits auditExpression="service:validationMaxMakeSpan()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="CO-AvalidationGlobalInformation" level="WARNING" message="aql:'The GlobalInformation lack of informations '" targetClass="placer.Global">
+          <audits auditExpression="service:validationGlobalInformation()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="CO-AvalidationGlobalProperties" level="WARNING" message="aql:'At least one GlobalProperties lack of informations '" targetClass="placer.Global">
+          <audits auditExpression="service:validationGlobalProperties()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="CO-AsameNameGlobalProperties" level="WARNING" message="aql:'At least 2 GlobalProperties have the same name'" targetClass="placer.GlobalProperties">
+          <audits auditExpression="service:sameNameGlobalProperties()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="CO-AsameUseMustBeUsed" level="WARNING" message="aql:'At least 2 MustBeUsed have the same ProcessingElement'" targetClass="placer.Global">
+          <audits auditExpression="service:sameUseMustBeUsed()"/>
+        </ownedRules>
+        <ownedRules xsi:type="validation:SemanticValidationRule" name="CO-AsameUseRunOn" level="WARNING" message="aql:'At least 2 RunOn have the same ProcessingElement and Task'" targetClass="placer.Global">
+          <audits auditExpression="service:sameUseRunOn()"/>
+        </ownedRules>
+      </validationSet>
+      <defaultLayer name="Default">
+        <nodeMappings name="bus" preconditionExpression="service:conditionCreationBus()" deletionDescription="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='bus']" semanticCandidatesExpression="feature:busses" domainClass="placer.Bus">
+          <style xsi:type="style:SquareDescription" labelSize="9" showIcon="false" labelPosition="node" width="36" height="3">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>bold</labelFormat>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+          </style>
+        </nodeMappings>
+        <edgeMappings name="connection" deletionDescription="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='connection']" sourceMapping="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@defaultLayer/@nodeMappings[name='bus']" targetMapping="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@defaultLayer/@containerMappings[name='processingElement']" targetFinderExpression="feature:connectionTo" sourceFinderExpression="feature:connectionFrom" domainClass="placer.Connection" useDomainElement="true" reconnections="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='TargetConnection'] //@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='SourceConnection']">
+          <style lineStyle="dash_dot" targetArrow="NoDecoration" sizeComputationExpression="4" routingStyle="manhattan" endsCentering="Target">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='orange']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <containerMappings name="processingElement" preconditionExpression="service:conditionCreationProcessingElement()" deletionDescription="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='processingElement']" semanticCandidatesExpression="feature:processingElements" domainClass="placer.ProcessingElement" dropDescriptions="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='propertiesDefinition'] //@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='resourcesDefinition']" childrenPresentation="List">
+          <subNodeMappings name="resourcesDefinition" preconditionExpression="service:conditionCreationResourcesDefinition()" semanticCandidatesExpression="feature:resourcesDefinitions" domainClass="placer.ResourcesDefinition">
+            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:self.name.name+' ('+self.value+')'" sizeComputationExpression="1" labelPosition="node" width="14" height="10">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelFormat>bold</labelFormat>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='orange']"/>
+            </style>
+          </subNodeMappings>
+          <subNodeMappings name="propertiesDefinition" preconditionExpression="service:conditionCreationPropertiesDefinition()" semanticCandidatesExpression="feature:propertiesDefinitions" domainClass="placer.PropertiesDefinition">
+            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:self.name.name+' ('+self.value+')'" sizeComputationExpression="1" labelPosition="node" width="14" height="10">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelFormat>bold</labelFormat>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='orange']"/>
+            </style>
+          </subNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" labelSize="9" showIcon="false" labelExpression="aql:self.name" widthComputationExpression="14" heightComputationExpression="10">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelFormat>bold</labelFormat>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='orange']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='orange']"/>
+          </style>
+        </containerMappings>
+        <toolSections name="Creation">
+          <ownedTools xsi:type="tool_1:ContainerCreationDescription" name="New Processing Element" forceRefresh="true" containerMappings="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@defaultLayer/@containerMappings[name='processingElement']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool:CreateInstance" typeName="placer.ProcessingElement" referenceName="processingElements">
+                  <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Hardware Model">
+                    <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                      <initialOperation/>
+                    </buttons>
+                    <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                      <initialOperation/>
+                    </buttons>
+                    <page name="New ProcessingElement" labelExpression="New ProcessingElement" domainClass="placer.ProcessingElement" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='New%20Processing%20Element']/@initialOperation/@firstModelOperations/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+                    <groups name="new ProcessingElement" labelExpression="Properties" domainClass="placer.ProcessingElement" semanticCandidateExpression="var:self">
+                      <controls xsi:type="properties:TextDescription" name="nameProcessingElement" labelExpression="Name : " helpExpression="String Excepted" valueExpression="aql:self.name">
+                        <initialOperation>
+                          <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                            <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="var:newValue"/>
+                          </firstModelOperations>
+                        </initialOperation>
+                      </controls>
+                      <controls xsi:type="properties:TextDescription" name="memoryProcessingElement" labelExpression="Memory : " helpExpression="Integer Excepted" valueExpression="aql:self.memory">
+                        <initialOperation>
+                          <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                            <subModelOperations xsi:type="tool:SetValue" featureName="memory" valueExpression="var:newValue"/>
+                          </firstModelOperations>
+                        </initialOperation>
+                      </controls>
+                      <controls xsi:type="properties:TextDescription" name="powerModelProcessingElement" labelExpression="powerModel : " helpExpression="String Excepted" valueExpression="aql:self.powerModel">
+                        <initialOperation>
+                          <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                            <subModelOperations xsi:type="tool:SetValue" featureName="powerModel" valueExpression="var:newValue"/>
+                          </firstModelOperations>
+                        </initialOperation>
+                      </controls>
+                      <controls xsi:type="properties-ext-widgets-reference:ExtReferenceDescription" name="class" labelExpression="Class : " helpExpression="ProcessingElementClass Excepted" referenceNameExpression="class">
+                        <onClickOperation>
+                          <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                            <subModelOperations xsi:type="tool:SetValue" featureName="class" valueExpression="var:newValue"/>
+                          </firstModelOperations>
+                        </onClickOperation>
+                      </controls>
+                    </groups>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:NodeCreationDescription" name="New Bus" forceRefresh="true" nodeMappings="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@defaultLayer/@nodeMappings[name='bus']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool:CreateInstance" typeName="placer.Bus" referenceName="busses">
+                  <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Hardware Model">
+                    <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                      <initialOperation/>
+                    </buttons>
+                    <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                      <initialOperation/>
+                    </buttons>
+                    <page name="New Bus" labelExpression="New Bus" domainClass="placer.Bus" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='New%20Bus']/@initialOperation/@firstModelOperations/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+                    <groups name="new Bus" labelExpression="Properties" domainClass="placer.Bus" semanticCandidateExpression="var:self">
+                      <controls xsi:type="properties:TextDescription" name="name" labelExpression="Name : " helpExpression="String Excepted" valueExpression="aql:self.name">
+                        <initialOperation>
+                          <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                            <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="var:newValue"/>
+                          </firstModelOperations>
+                        </initialOperation>
+                      </controls>
+                      <controls xsi:type="properties:TextDescription" name="TimeUnitPerDataUnit" labelExpression="TimeUnitPerDataUnit : " helpExpression="Integer Excepted" valueExpression="aql:self.timeUnitPerDataUnit">
+                        <initialOperation>
+                          <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                            <subModelOperations xsi:type="tool:SetValue" featureName="timeUnitPerDataUnit" valueExpression="var:newValue"/>
+                          </firstModelOperations>
+                        </initialOperation>
+                      </controls>
+                      <controls xsi:type="properties:TextDescription" name="latency" labelExpression="Latency : " helpExpression="Integer Excepted" valueExpression="aql:self.latency">
+                        <initialOperation>
+                          <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                            <subModelOperations xsi:type="tool:SetValue" featureName="latency" valueExpression="var:newValue"/>
+                          </firstModelOperations>
+                        </initialOperation>
+                      </controls>
+                    </groups>
+                  </subModelOperations>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:EdgeCreationDescription" name="New Connection" forceRefresh="true" edgeMappings="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@defaultLayer/@edgeMappings[name='connection']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:CreateInstance" typeName="placer.Connection" referenceName="connections">
+                <subModelOperations xsi:type="tool:SetValue" featureName="connectionFrom" valueExpression="var:source"/>
+                <subModelOperations xsi:type="tool:SetValue" featureName="connectionTo" valueExpression="var:target"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:NodeCreationDescription" name="New Resources Definition" forceRefresh="true" nodeMappings="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@defaultLayer/@containerMappings[name='processingElement']/@subNodeMappings[name='resourcesDefinition']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:CreateInstance" typeName="placer.ResourcesDefinition" referenceName="resourcesDefinitions">
+                <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Hardware Model">
+                  <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                    <initialOperation/>
+                  </buttons>
+                  <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                    <initialOperation/>
+                  </buttons>
+                  <page name="New ResourcesDefinition" labelExpression="New ResourcesDefinition" domainClass="placer.ResourcesDefinition" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='New%20Resources%20Definition']/@initialOperation/@firstModelOperations/@subModelOperations.0/@groups.0"/>
+                  <groups name="new ResourcesDefinition" labelExpression="Properties" domainClass="placer.ResourcesDefinition" semanticCandidateExpression="var:self">
+                    <controls xsi:type="properties-ext-widgets-reference:ExtReferenceDescription" name="name" labelExpression="Name : " helpExpression="String Excepted" referenceNameExpression="name">
+                      <onClickOperation>
+                        <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                          <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="var:newValue"/>
+                        </firstModelOperations>
+                      </onClickOperation>
+                    </controls>
+                    <controls xsi:type="properties:TextDescription" name="value" labelExpression="Value : " helpExpression="Integer Excepted" valueExpression="aql:self.value">
+                      <initialOperation>
+                        <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                          <subModelOperations xsi:type="tool:SetValue" featureName="value" valueExpression="var:newValue"/>
+                        </firstModelOperations>
+                      </initialOperation>
+                    </controls>
+                  </groups>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:NodeCreationDescription" name="New Properties Definition" forceRefresh="true" nodeMappings="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@defaultLayer/@containerMappings[name='processingElement']/@subNodeMappings[name='propertiesDefinition']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:CreateInstance" typeName="placer.PropertiesDefinition" referenceName="propertiesDefinitions">
+                <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Hardware Model">
+                  <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                    <initialOperation/>
+                  </buttons>
+                  <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                    <initialOperation/>
+                  </buttons>
+                  <page name="New PropertiesDefinition" labelExpression="New PropertiesDefinition" domainClass="placer.PropertiesDefinition" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@defaultLayer/@toolSections.0/@ownedTools[name='New%20Properties%20Definition']/@initialOperation/@firstModelOperations/@subModelOperations.0/@groups.0"/>
+                  <groups name="new PropertiesDefinition" labelExpression="Properties" domainClass="placer.PropertiesDefinition" semanticCandidateExpression="var:self">
+                    <controls xsi:type="properties-ext-widgets-reference:ExtReferenceDescription" name="name" labelExpression="Name : " helpExpression="String Excepted" referenceNameExpression="name">
+                      <onClickOperation>
+                        <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                          <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="var:newValue"/>
+                        </firstModelOperations>
+                      </onClickOperation>
+                    </controls>
+                    <controls xsi:type="properties:TextDescription" name="value" labelExpression="Value : " helpExpression="Integer Excepted" valueExpression="aql:self.value">
+                      <initialOperation>
+                        <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                          <subModelOperations xsi:type="tool:SetValue" featureName="value" valueExpression="var:newValue"/>
+                        </firstModelOperations>
+                      </initialOperation>
+                    </controls>
+                  </groups>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ReconnectEdgeDescription" name="SourceConnection" forceRefresh="true" reconnectionKind="RECONNECT_SOURCE">
+            <source name="source"/>
+            <target name="target"/>
+            <sourceView name="sourceView"/>
+            <targetView name="targetView"/>
+            <element name="element"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool:SetValue" featureName="connectionFrom" valueExpression="var:target">
+                  <subModelOperations xsi:type="tool:MoveElement" newContainerExpression="aql:self.connectionFrom" featureName="connections"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+            <edgeView name="edgeView"/>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ReconnectEdgeDescription" name="TargetConnection" forceRefresh="true">
+            <source name="source"/>
+            <target name="target"/>
+            <sourceView name="sourceView"/>
+            <targetView name="targetView"/>
+            <element name="element"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool:SetValue" featureName="connectionTo" valueExpression="var:target"/>
+              </firstModelOperations>
+            </initialOperation>
+            <edgeView name="edgeView"/>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ContainerDropDescription" name="propertiesDefinition" forceRefresh="true" mappings="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@defaultLayer/@containerMappings[name='processingElement']/@subNodeMappings[name='propertiesDefinition']">
+            <oldContainer name="oldSemanticContainer"/>
+            <newContainer name="newSemanticContainer"/>
+            <element name="element"/>
+            <newViewContainer name="newContainerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="[newSemanticContainer/]">
+                <subModelOperations xsi:type="tool:SetValue" featureName="propertiesDefinitions" valueExpression="var:element"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:ContainerDropDescription" name="resourcesDefinition" forceRefresh="true" mappings="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='Hardware%20Diagram']/@defaultLayer/@containerMappings[name='processingElement']/@subNodeMappings[name='resourcesDefinition']">
+            <oldContainer name="oldSemanticContainer"/>
+            <newContainer name="newSemanticContainer"/>
+            <element name="element"/>
+            <newViewContainer name="newContainerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="[newSemanticContainer/]">
+                <subModelOperations xsi:type="tool:SetValue" featureName="resourcesDefinitions" valueExpression="var:element"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:DeleteElementDescription" name="bus" forceRefresh="true">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool:RemoveElement"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:DeleteElementDescription" name="processingElement" forceRefresh="true">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool:Unset" featureName="emptyConnection" elementExpression="service:verificationConnections()"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:DeleteElementDescription" name="connection" forceRefresh="true">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool:RemoveElement"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:DeleteElementDescription" name="resourcesDefinition" forceRefresh="true">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool:RemoveElement"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:DeleteElementDescription" name="propertiesDefinition" forceRefresh="true">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:element">
+                <subModelOperations xsi:type="tool:RemoveElement"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </defaultLayer>
+      <additionalLayers name="JSON" activeByDefault="true" optional="false">
+        <toolSections name="Generation">
+          <ownedTools xsi:type="tool:OperationAction" name="Generation in .json" forceRefresh="true">
+            <view name="views"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="properties:DialogModelOperation" titleExpression="All Model">
+                <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                  <initialOperation/>
+                </buttons>
+                <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                  <initialOperation>
+                    <firstModelOperations xsi:type="tool:Switch">
+                      <cases conditionExpression="service:json()">
+                        <subModelOperations xsi:type="tool:ChangeContext" browseExpression="service:building()"/>
+                      </cases>
+                      <default>
+                        <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="All Model">
+                          <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                            <initialOperation/>
+                          </buttons>
+                          <page name="Problem in the diagrams generation in JSON" labelExpression="To see your errors, click on the right button of your mouse and select &quot;Validate Diagram&quot; in the Software Diagram and in the Hardware Diagram." semanticCandidateExpression="var:self"/>
+                        </subModelOperations>
+                      </default>
+                    </firstModelOperations>
+                  </initialOperation>
+                </buttons>
+                <page name="Diagrams generation in JSON" labelExpression="Diagrams generation in JSON" domainClass="placer.Global" semanticCandidateExpression="var:self"/>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+      </additionalLayers>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_1:TreeDescription" name="ConstraintsAndObjective" titleExpression="ConstraintsAndObjectiveModel" initialisation="true" showOnStartup="true" domainClass="placer.Global">
+      <metamodel href="http://www.example.org/placer#/"/>
+      <subItemMappings name="GlobalInformation" domainClass="placer.GlobalInformation" preconditionExpression="service:conditionCreationGlobalInformation()" semanticCandidatesExpression="feature:globalInformations">
+        <defaultStyle labelExpression="aql:'GlobalInformation : '+self.information+', TimeUnit : '+self.timeUnit+', DataUnit : '+self.dataUnit">
+          <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+        </defaultStyle>
+      </subItemMappings>
+      <subItemMappings name="GlobalProperties" domainClass="placer.GlobalProperties" preconditionExpression="service:conditionCreationGlobalProperties()" semanticCandidatesExpression="feature:globalProperties">
+        <defaultStyle labelExpression="aql:'GlobalProperties : '+self.name+' ('+self.value+')'">
+          <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+        </defaultStyle>
+      </subItemMappings>
+      <subItemMappings name="PowerCap" domainClass="placer.PowerCap" preconditionExpression="service:conditionCreationPowerCap()" semanticCandidatesExpression="feature:powerCap">
+        <defaultStyle labelExpression="aql:'PowerCap : '+self.powerCap">
+          <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+        </defaultStyle>
+      </subItemMappings>
+      <subItemMappings name="EnergyCap" domainClass="placer.EnergyCap" preconditionExpression="service:conditionCreationEnergyCap()" semanticCandidatesExpression="feature:energyCap">
+        <defaultStyle labelExpression="aql:'EnergyCap : '+self.energyCap">
+          <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+        </defaultStyle>
+      </subItemMappings>
+      <subItemMappings name="MaxMakeSpan" domainClass="placer.MaxMakeSpan" preconditionExpression="service:conditionCreationMaxMakeSpan()" semanticCandidatesExpression="feature:maxMakeSpan">
+        <defaultStyle labelExpression="aql:'MaxMakeSpan : '+self.maxMakeSpan">
+          <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+        </defaultStyle>
+      </subItemMappings>
+      <subItemMappings name="SimpleObjectiveGoal" domainClass="placer.SimpleObjectiveGoal" semanticCandidatesExpression="feature:mappingGoals">
+        <defaultStyle labelExpression="aql:'SimpleObjectiveGoal : '+self.simpleObjective">
+          <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+        </defaultStyle>
+      </subItemMappings>
+      <subItemMappings name="MultiObjectiveGoal" domainClass="placer.MultiObjectiveGoal" semanticCandidatesExpression="feature:mappingGoals">
+        <defaultStyle labelExpression="aql:'MultiObjectiveGoal : '+self.simpleObjective+', '+self.simpleObjective2">
+          <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+        </defaultStyle>
+      </subItemMappings>
+      <subItemMappings name="MustBeUsed" domainClass="placer.MustBeUsed" preconditionExpression="service:conditionCreationConstraintOrObjective()" semanticCandidatesExpression="feature:constraintOrObjectives">
+        <defaultStyle labelExpression="service:displayMustBeUsed()">
+          <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+        </defaultStyle>
+        <subItemMappings name="ProcessingElementMustBeUsed" domainClass="placer.ProcessingElement" semanticCandidatesExpression="feature:processingElementMustBeUsed">
+          <defaultStyle labelExpression="service:displayProcessingElement()">
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </defaultStyle>
+        </subItemMappings>
+      </subItemMappings>
+      <subItemMappings name="SamePE" domainClass="placer.SamePE" preconditionExpression="service:conditionCreationConstraintOrObjective()" semanticCandidatesExpression="feature:constraintOrObjectives">
+        <defaultStyle labelExpression="service:displaySamePE()">
+          <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+        </defaultStyle>
+        <subItemMappings name="TaskSamePE" domainClass="placer.Task" semanticCandidatesExpression="feature:taskSamePE">
+          <defaultStyle labelExpression="aql:'Task '+self.name">
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </defaultStyle>
+        </subItemMappings>
+      </subItemMappings>
+      <subItemMappings name="SymetricPE" domainClass="placer.SymetricPE" preconditionExpression="service:conditionCreationConstraintOrObjective()" semanticCandidatesExpression="feature:constraintOrObjectives">
+        <defaultStyle labelExpression="service:displaySymetricPE()">
+          <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+        </defaultStyle>
+        <subItemMappings name="ProcessingElementSymetricPE" domainClass="placer.ProcessingElement" semanticCandidatesExpression="feature:processingElementSymetricPE">
+          <defaultStyle labelExpression="service:displayProcessingElement()">
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </defaultStyle>
+        </subItemMappings>
+      </subItemMappings>
+      <subItemMappings name="RunOn" domainClass="placer.RunOn" preconditionExpression="service:conditionCreationConstraintOrObjective()" semanticCandidatesExpression="feature:constraintOrObjectives">
+        <defaultStyle labelExpression="service:displayRunOn()">
+          <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+        </defaultStyle>
+        <subItemMappings name="TaskRunOn" domainClass="placer.Task" semanticCandidatesExpression="feature:taskRunOn">
+          <defaultStyle labelExpression="aql:'Task '+self.name">
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </defaultStyle>
+        </subItemMappings>
+        <subItemMappings name="ProcessingElementRunOn" domainClass="placer.ProcessingElement" semanticCandidatesExpression="feature:processingElementRunOn">
+          <defaultStyle labelExpression="service:displayProcessingElement()">
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+          </defaultStyle>
+        </subItemMappings>
+      </subItemMappings>
+      <createTreeItem name="new GlobalInformation" precondition="aql:self.globalInformations=null" forceRefresh="true" mapping="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='ConstraintsAndObjective']/@subItemMappings[name='GlobalInformation']">
+        <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="var:container">
+          <subModelOperations xsi:type="tool:CreateInstance" typeName="placer.GlobalInformation" referenceName="globalInformations">
+            <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Global">
+              <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                <initialOperation/>
+              </buttons>
+              <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                <initialOperation/>
+              </buttons>
+              <page name="NewGlobalInformation" labelExpression="New GlobalInformation" domainClass="placer.GlobalInformation" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='ConstraintsAndObjective']/@createTreeItem.0/@firstModelOperation/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+              <groups name="new GlobalInformation" labelExpression="Properties" domainClass="placer.GlobalInformation" semanticCandidateExpression="var:self">
+                <controls xsi:type="properties:TextDescription" name="Information" labelExpression="Information : " helpExpression="String Excepted" valueExpression="aql:self.information">
+                  <initialOperation>
+                    <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                      <subModelOperations xsi:type="tool:SetValue" featureName="information" valueExpression="var:newValue"/>
+                    </firstModelOperations>
+                  </initialOperation>
+                </controls>
+                <controls xsi:type="properties:TextDescription" name="TimeUnit" labelExpression="TimeUnit : " helpExpression="String Excepted" valueExpression="aql:self.timeUnit">
+                  <initialOperation>
+                    <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                      <subModelOperations xsi:type="tool:SetValue" featureName="timeUnit" valueExpression="var:newValue"/>
+                    </firstModelOperations>
+                  </initialOperation>
+                </controls>
+                <controls xsi:type="properties:TextDescription" name="DataUnit" labelExpression="DataUnit : " helpExpression="String Excepted" valueExpression="aql:self.dataUnit">
+                  <initialOperation>
+                    <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                      <subModelOperations xsi:type="tool:SetValue" featureName="dataUnit" valueExpression="var:newValue"/>
+                    </firstModelOperations>
+                  </initialOperation>
+                </controls>
+              </groups>
+            </subModelOperations>
+          </subModelOperations>
+        </firstModelOperation>
+        <variables name="root" documentation="The semantic element of the tree."/>
+        <variables name="element" documentation="The currently edited element."/>
+        <variables name="container" documentation="The semantic element corresponding to the view container."/>
+      </createTreeItem>
+      <createTreeItem name="new GlobalProperties" forceRefresh="true" mapping="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='ConstraintsAndObjective']/@subItemMappings[name='GlobalProperties']">
+        <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="var:container">
+          <subModelOperations xsi:type="tool:CreateInstance" typeName="placer.GlobalProperties" referenceName="globalProperties">
+            <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Global">
+              <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                <initialOperation/>
+              </buttons>
+              <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                <initialOperation/>
+              </buttons>
+              <page name="New GlobalProperties" labelExpression="New GlobalProperties" domainClass="placer.GlobalProperties" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='ConstraintsAndObjective']/@createTreeItem.1/@firstModelOperation/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+              <groups name="new GlobalProperties" labelExpression="Properties" domainClass="placer.GlobalProperties" semanticCandidateExpression="var:self">
+                <controls xsi:type="properties:TextDescription" name="name" labelExpression="name : " helpExpression="String Excepted" valueExpression="aql:self.name">
+                  <initialOperation>
+                    <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                      <subModelOperations xsi:type="tool:SetValue" featureName="name" valueExpression="var:newValue"/>
+                    </firstModelOperations>
+                  </initialOperation>
+                </controls>
+                <controls xsi:type="properties:TextDescription" name="value" labelExpression="value : " helpExpression="Integer Excepted" valueExpression="aql:self.value">
+                  <initialOperation>
+                    <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                      <subModelOperations xsi:type="tool:SetValue" featureName="value" valueExpression="var:newValue"/>
+                    </firstModelOperations>
+                  </initialOperation>
+                </controls>
+              </groups>
+            </subModelOperations>
+          </subModelOperations>
+        </firstModelOperation>
+        <variables name="root" documentation="The semantic element of the tree."/>
+        <variables name="element" documentation="The currently edited element."/>
+        <variables name="container" documentation="The semantic element corresponding to the view container."/>
+      </createTreeItem>
+      <createTreeItem name="new PowerCap" precondition="aql:self.powerCap=null" forceRefresh="true" mapping="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='ConstraintsAndObjective']/@subItemMappings[name='PowerCap']">
+        <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="var:container">
+          <subModelOperations xsi:type="tool:CreateInstance" typeName="placer.PowerCap" referenceName="powerCap">
+            <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Global">
+              <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                <initialOperation/>
+              </buttons>
+              <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                <initialOperation/>
+              </buttons>
+              <page name="New PowerCap" labelExpression="New PowerCap" domainClass="placer.PowerCap" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='ConstraintsAndObjective']/@createTreeItem.2/@firstModelOperation/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+              <groups name="new PowerCap" labelExpression="Properties" domainClass="placer.PowerCap" semanticCandidateExpression="var:self">
+                <controls xsi:type="properties:TextDescription" name="PowerCap" labelExpression="PowerCap : " helpExpression="Integer Excepted" valueExpression="aql:self.powerCap">
+                  <initialOperation>
+                    <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                      <subModelOperations xsi:type="tool:SetValue" featureName="powerCap" valueExpression="var:newValue"/>
+                    </firstModelOperations>
+                  </initialOperation>
+                </controls>
+              </groups>
+            </subModelOperations>
+          </subModelOperations>
+        </firstModelOperation>
+        <variables name="root" documentation="The semantic element of the tree."/>
+        <variables name="element" documentation="The currently edited element."/>
+        <variables name="container" documentation="The semantic element corresponding to the view container."/>
+      </createTreeItem>
+      <createTreeItem name="new EnergyCap" precondition="aql:self.energyCap=null" forceRefresh="true" mapping="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='ConstraintsAndObjective']/@subItemMappings[name='EnergyCap']">
+        <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="var:container">
+          <subModelOperations xsi:type="tool:CreateInstance" typeName="placer.EnergyCap" referenceName="energyCap">
+            <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Global">
+              <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                <initialOperation/>
+              </buttons>
+              <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                <initialOperation/>
+              </buttons>
+              <page name="New EnergyCap" labelExpression="New EnergyCap" domainClass="placer.EnergyCap" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='ConstraintsAndObjective']/@createTreeItem.3/@firstModelOperation/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+              <groups name="new EnergyCap" labelExpression="Properties" domainClass="placer.EnergyCap" semanticCandidateExpression="var:self">
+                <controls xsi:type="properties:TextDescription" name="EnergyCap" labelExpression="EnergyCap : " helpExpression="Integer Excepted" valueExpression="aql:self.energyCap">
+                  <initialOperation>
+                    <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                      <subModelOperations xsi:type="tool:SetValue" featureName="energyCap" valueExpression="var:newValue"/>
+                    </firstModelOperations>
+                  </initialOperation>
+                </controls>
+              </groups>
+            </subModelOperations>
+          </subModelOperations>
+        </firstModelOperation>
+        <variables name="root" documentation="The semantic element of the tree."/>
+        <variables name="element" documentation="The currently edited element."/>
+        <variables name="container" documentation="The semantic element corresponding to the view container."/>
+      </createTreeItem>
+      <createTreeItem name="new MaxMakeSpan" precondition="aql:self.maxMakeSpan=null" forceRefresh="true" mapping="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='ConstraintsAndObjective']/@subItemMappings[name='MaxMakeSpan']">
+        <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="var:container">
+          <subModelOperations xsi:type="tool:CreateInstance" typeName="placer.MaxMakeSpan" referenceName="maxMakeSpan">
+            <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Global">
+              <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                <initialOperation/>
+              </buttons>
+              <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                <initialOperation/>
+              </buttons>
+              <page name="New MaxMakeSpan" labelExpression="New MaxMakeSpan" domainClass="placer.MaxMakeSpan" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='ConstraintsAndObjective']/@createTreeItem.4/@firstModelOperation/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+              <groups name="new MaxMakeSpan" labelExpression="Properties" domainClass="placer.MaxMakeSpan" semanticCandidateExpression="var:self">
+                <controls xsi:type="properties:TextDescription" name="MaxMakeSpan" labelExpression="MaxMakeSpan : " helpExpression="Integer Excepted" valueExpression="aql:self.maxMakeSpan">
+                  <initialOperation>
+                    <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                      <subModelOperations xsi:type="tool:SetValue" featureName="maxMakeSpan" valueExpression="var:newValue"/>
+                    </firstModelOperations>
+                  </initialOperation>
+                </controls>
+              </groups>
+            </subModelOperations>
+          </subModelOperations>
+        </firstModelOperation>
+        <variables name="root" documentation="The semantic element of the tree."/>
+        <variables name="element" documentation="The currently edited element."/>
+        <variables name="container" documentation="The semantic element corresponding to the view container."/>
+      </createTreeItem>
+      <createTreeItem name="new SimpleObjectiveGoal" precondition="aql:self.mappingGoals=null" forceRefresh="true" mapping="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='ConstraintsAndObjective']/@subItemMappings[name='SimpleObjectiveGoal']">
+        <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="var:container">
+          <subModelOperations xsi:type="tool:CreateInstance" typeName="placer.SimpleObjectiveGoal" referenceName="mappingGoals">
+            <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Global">
+              <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                <initialOperation/>
+              </buttons>
+              <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                <initialOperation/>
+              </buttons>
+              <page name="New SimpleObjectiveGoal" labelExpression="New SimpleObjectiveGoal" domainClass="placer.SimpleObjectiveGoal" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='ConstraintsAndObjective']/@createTreeItem.5/@firstModelOperation/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+              <groups name="new SimpleObjectiveGoal" labelExpression="Properties" domainClass="placer.SimpleObjectiveGoal" semanticCandidateExpression="var:self">
+                <controls xsi:type="properties:RadioDescription" name="SimpleObjective" labelExpression="SimpleObjective : " helpExpression="aql:input.emfEditServices(self).getDescription(self.eClass().getEStructuralFeature('simpleObjective'))" isEnabledExpression="aql:self.eClass().getEStructuralFeature('simpleObjective').changeable" valueExpression="aql:self.eClass().getEStructuralFeature('simpleObjective').eType.getEEnumLiteralByLiteral(self.simpleObjective.toString())" candidatesExpression="aql:self.eClass().getEStructuralFeature('simpleObjective').eType.eLiterals" candidateDisplayExpression="aql:candidate.name" numberOfColumns="4">
+                  <initialOperation>
+                    <firstModelOperations xsi:type="tool:SetValue" featureName="simpleObjective" valueExpression="aql:newValue.instance"/>
+                  </initialOperation>
+                </controls>
+              </groups>
+            </subModelOperations>
+          </subModelOperations>
+        </firstModelOperation>
+        <variables name="root" documentation="The semantic element of the tree."/>
+        <variables name="element" documentation="The currently edited element."/>
+        <variables name="container" documentation="The semantic element corresponding to the view container."/>
+      </createTreeItem>
+      <createTreeItem name="new MultiObjectiveGoal" precondition="aql:self.mappingGoals=null" forceRefresh="true" mapping="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='ConstraintsAndObjective']/@subItemMappings[name='MultiObjectiveGoal']">
+        <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="var:container">
+          <subModelOperations xsi:type="tool:CreateInstance" typeName="placer.MultiObjectiveGoal" referenceName="mappingGoals">
+            <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Global">
+              <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                <initialOperation/>
+              </buttons>
+              <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                <initialOperation/>
+              </buttons>
+              <page name="New MultiObjectiveGoal" labelExpression="New MultiObjectiveGoal" domainClass="placer.MultiObjectiveGoal" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='ConstraintsAndObjective']/@createTreeItem.6/@firstModelOperation/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+              <groups name="new MultiObjectiveGoal" labelExpression="Properties" domainClass="placer.MultiObjectiveGoal" semanticCandidateExpression="var:self">
+                <controls xsi:type="properties:RadioDescription" name="SimpleObjective" labelExpression="SimpleObjective : " helpExpression="SimpleGoal Excepted" isEnabledExpression="aql:self.eClass().getEStructuralFeature('simpleObjective').changeable" valueExpression="aql:self.eClass().getEStructuralFeature('simpleObjective').eType.getEEnumLiteralByLiteral(self.simpleObjective.toString())" candidatesExpression="aql:self.eClass().getEStructuralFeature('simpleObjective').eType.eLiterals" candidateDisplayExpression="aql:candidate.name" numberOfColumns="4">
+                  <initialOperation>
+                    <firstModelOperations xsi:type="tool:SetValue" featureName="simpleObjective" valueExpression="aql:newValue.instance"/>
+                  </initialOperation>
+                </controls>
+                <controls xsi:type="properties:RadioDescription" name="SimpleObjective2" labelExpression="SimpleObjective2 : " helpExpression="SimpleGoal Excepted" isEnabledExpression="aql:self.eClass().getEStructuralFeature('simpleObjective2').changeable" valueExpression="aql:self.eClass().getEStructuralFeature('simpleObjective2').eType.getEEnumLiteralByLiteral(self.simpleObjective2.toString())" candidatesExpression="aql:self.eClass().getEStructuralFeature('simpleObjective2').eType.eLiterals" candidateDisplayExpression="aql:candidate.name" numberOfColumns="4">
+                  <initialOperation>
+                    <firstModelOperations xsi:type="tool:SetValue" featureName="simpleObjective2" valueExpression="aql:newValue.instance"/>
+                  </initialOperation>
+                </controls>
+              </groups>
+            </subModelOperations>
+          </subModelOperations>
+        </firstModelOperation>
+        <variables name="root" documentation="The semantic element of the tree."/>
+        <variables name="element" documentation="The currently edited element."/>
+        <variables name="container" documentation="The semantic element corresponding to the view container."/>
+      </createTreeItem>
+      <createTreeItem name="new MustBeUsed" forceRefresh="true" mapping="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='ConstraintsAndObjective']/@subItemMappings[name='MustBeUsed']">
+        <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="var:container">
+          <subModelOperations xsi:type="tool:CreateInstance" typeName="placer.MustBeUsed" referenceName="constraintOrObjectives">
+            <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Global">
+              <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                <initialOperation/>
+              </buttons>
+              <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                <initialOperation/>
+              </buttons>
+              <page name="New MustBeUsed" labelExpression="New MustBeUsed" domainClass="placer.MustBeUsed" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='ConstraintsAndObjective']/@createTreeItem.7/@firstModelOperation/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+              <groups name="new MustBeUsed" labelExpression="Properties" domainClass="placer.MustBeUsed" semanticCandidateExpression="var:self">
+                <controls xsi:type="properties:TextDescription" name="Info" labelExpression="Info : " helpExpression="String Excepted" valueExpression="aql:self.info">
+                  <initialOperation>
+                    <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                      <subModelOperations xsi:type="tool:SetValue" featureName="info" valueExpression="var:newValue"/>
+                    </firstModelOperations>
+                  </initialOperation>
+                </controls>
+                <controls xsi:type="properties:CheckboxDescription" name="Yes" labelExpression="Yes : " helpExpression="Boolean Excepted" valueExpression="aql:self.yes">
+                  <initialOperation>
+                    <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                      <subModelOperations xsi:type="tool:SetValue" featureName="yes" valueExpression="var:newValue"/>
+                    </firstModelOperations>
+                  </initialOperation>
+                </controls>
+                <controls xsi:type="properties-ext-widgets-reference:ExtReferenceDescription" name="ProcessingElementMustBeUsed" labelExpression="ProcessingElementMustBeUsed" helpExpression="ProcessingElement Excepted" referenceNameExpression="processingElementMustBeUsed">
+                  <onClickOperation>
+                    <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                      <subModelOperations xsi:type="tool:SetValue" featureName="processingElementMustBeUsed" valueExpression="var:newValue"/>
+                    </firstModelOperations>
+                  </onClickOperation>
+                </controls>
+              </groups>
+            </subModelOperations>
+          </subModelOperations>
+        </firstModelOperation>
+        <variables name="root" documentation="The semantic element of the tree."/>
+        <variables name="element" documentation="The currently edited element."/>
+        <variables name="container" documentation="The semantic element corresponding to the view container."/>
+      </createTreeItem>
+      <createTreeItem name="new SamePE" forceRefresh="true" mapping="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='ConstraintsAndObjective']/@subItemMappings[name='SamePE']">
+        <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="var:container">
+          <subModelOperations xsi:type="tool:CreateInstance" typeName="placer.SamePE" referenceName="constraintOrObjectives">
+            <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Global">
+              <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                <initialOperation/>
+              </buttons>
+              <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                <initialOperation/>
+              </buttons>
+              <page name="New SamePE" labelExpression="New SamePE" domainClass="placer.SamePE" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='ConstraintsAndObjective']/@createTreeItem.8/@firstModelOperation/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+              <groups name="new SamePE" labelExpression="Properties" domainClass="placer.SamePE" semanticCandidateExpression="var:self">
+                <controls xsi:type="properties:TextDescription" name="Info" labelExpression="Info : " helpExpression="String Excepted" valueExpression="aql:self.info">
+                  <initialOperation>
+                    <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                      <subModelOperations xsi:type="tool:SetValue" featureName="info" valueExpression="var:newValue"/>
+                    </firstModelOperations>
+                  </initialOperation>
+                </controls>
+                <controls xsi:type="properties:CheckboxDescription" name="Yes" labelExpression="Yes : " helpExpression="Boolean Excepted" valueExpression="aql:self.yes">
+                  <initialOperation>
+                    <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                      <subModelOperations xsi:type="tool:SetValue" featureName="yes" valueExpression="var:newValue"/>
+                    </firstModelOperations>
+                  </initialOperation>
+                </controls>
+                <controls xsi:type="properties-ext-widgets-reference:ExtReferenceDescription" name="TaskSamePE" labelExpression="TaskSamePE" helpExpression="Task Excepted" referenceNameExpression="taskSamePE">
+                  <onClickOperation>
+                    <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                      <subModelOperations xsi:type="tool:SetValue" featureName="taskSamePE" valueExpression="var:newValue"/>
+                    </firstModelOperations>
+                  </onClickOperation>
+                </controls>
+              </groups>
+            </subModelOperations>
+          </subModelOperations>
+        </firstModelOperation>
+        <variables name="root" documentation="The semantic element of the tree."/>
+        <variables name="element" documentation="The currently edited element."/>
+        <variables name="container" documentation="The semantic element corresponding to the view container."/>
+      </createTreeItem>
+      <createTreeItem name="new SymetricPE" forceRefresh="true" mapping="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='ConstraintsAndObjective']/@subItemMappings[name='SymetricPE']">
+        <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="var:container">
+          <subModelOperations xsi:type="tool:CreateInstance" typeName="placer.SymetricPE" referenceName="constraintOrObjectives">
+            <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Global">
+              <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                <initialOperation/>
+              </buttons>
+              <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                <initialOperation/>
+              </buttons>
+              <page name="New SymetricPE" labelExpression="New SymetricPE" domainClass="placer.SymetricPE" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='ConstraintsAndObjective']/@createTreeItem.9/@firstModelOperation/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+              <groups name="new SymetricPE" labelExpression="Properties" domainClass="placer.SymetricPE" semanticCandidateExpression="var:self">
+                <controls xsi:type="properties:TextDescription" name="Info" labelExpression="Info : " helpExpression="String Excepted" valueExpression="aql:self.info">
+                  <initialOperation>
+                    <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                      <subModelOperations xsi:type="tool:SetValue" featureName="info" valueExpression="var:newValue"/>
+                    </firstModelOperations>
+                  </initialOperation>
+                </controls>
+                <controls xsi:type="properties-ext-widgets-reference:ExtReferenceDescription" name="ProcessingElementSymetricPE" labelExpression="ProcessingElementSymetricPE" helpExpression="ProcessingElement Excepted" referenceNameExpression="processingElementSymetricPE">
+                  <onClickOperation>
+                    <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                      <subModelOperations xsi:type="tool:SetValue" featureName="processingElementSymetricPE" valueExpression="var:newValue"/>
+                    </firstModelOperations>
+                  </onClickOperation>
+                </controls>
+              </groups>
+            </subModelOperations>
+          </subModelOperations>
+        </firstModelOperation>
+        <variables name="root" documentation="The semantic element of the tree."/>
+        <variables name="element" documentation="The currently edited element."/>
+        <variables name="container" documentation="The semantic element corresponding to the view container."/>
+      </createTreeItem>
+      <createTreeItem name="new RunOn" forceRefresh="true" mapping="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='ConstraintsAndObjective']/@subItemMappings[name='RunOn']">
+        <firstModelOperation xsi:type="tool:ChangeContext" browseExpression="var:container">
+          <subModelOperations xsi:type="tool:CreateInstance" typeName="placer.RunOn" referenceName="constraintOrObjectives">
+            <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Global">
+              <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                <initialOperation/>
+              </buttons>
+              <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                <initialOperation/>
+              </buttons>
+              <page name="New RunOn" labelExpression="New RunOn" domainClass="placer.RunOn" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='ConstraintsAndObjective']/@createTreeItem.10/@firstModelOperation/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+              <groups name="new RunOn" labelExpression="Properties" domainClass="placer.RunOn" semanticCandidateExpression="var:self">
+                <controls xsi:type="properties:TextDescription" name="Info" labelExpression="Info : " helpExpression="String Excepted" valueExpression="aql:self.info">
+                  <initialOperation>
+                    <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                      <subModelOperations xsi:type="tool:SetValue" featureName="info" valueExpression="var:newValue"/>
+                    </firstModelOperations>
+                  </initialOperation>
+                </controls>
+                <controls xsi:type="properties:CheckboxDescription" name="Yes" labelExpression="Yes : " helpExpression="Boolean Excepted" valueExpression="aql:self.yes">
+                  <initialOperation>
+                    <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                      <subModelOperations xsi:type="tool:SetValue" featureName="yes" valueExpression="var:newValue"/>
+                    </firstModelOperations>
+                  </initialOperation>
+                </controls>
+                <controls xsi:type="properties-ext-widgets-reference:ExtReferenceDescription" name="TaskRunOn" labelExpression="TaskRunOn" helpExpression="Task Excepted" referenceNameExpression="taskRunOn">
+                  <onClickOperation>
+                    <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                      <subModelOperations xsi:type="tool:SetValue" featureName="taskRunOn" valueExpression="var:newValue"/>
+                    </firstModelOperations>
+                  </onClickOperation>
+                </controls>
+                <controls xsi:type="properties-ext-widgets-reference:ExtReferenceDescription" name="ProcessingElementRunOn" labelExpression="ProcessingElementRunOn" helpExpression="ProcessingElement Excepted" referenceNameExpression="processingElementRunOn">
+                  <onClickOperation>
+                    <firstModelOperations xsi:type="tool:ChangeContext" browseExpression="var:self">
+                      <subModelOperations xsi:type="tool:SetValue" featureName="processingElementRunOn" valueExpression="var:newValue"/>
+                    </firstModelOperations>
+                  </onClickOperation>
+                </controls>
+              </groups>
+            </subModelOperations>
+          </subModelOperations>
+        </firstModelOperation>
+        <variables name="root" documentation="The semantic element of the tree."/>
+        <variables name="element" documentation="The currently edited element."/>
+        <variables name="container" documentation="The semantic element corresponding to the view container."/>
+      </createTreeItem>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_3:EditionTableDescription" name="PlacerOut" titleExpression="PlacerOut" initialisation="true" domainClass="placer.MainPlacerOut">
+      <metamodel href="http://www.example.org/placer#/"/>
+      <ownedRepresentationCreationDescriptions xsi:type="tool_1:DiagramCreationDescription" name="allMapping" label="Mapping" forceRefresh="true" titleExpression="Mapping">
+        <initialOperation>
+          <firstModelOperations xsi:type="tool:ChangeContext"/>
+        </initialOperation>
+        <containerViewVariable name="containerView"/>
+        <representationNameVariable name="diagramName"/>
+      </ownedRepresentationCreationDescriptions>
+      <ownedLineMappings name="mapping" detailDescriptions="//@ownedViewpoints[name='placerViewpoint']/@ownedRepresentations[name='PlacerOut']/@ownedRepresentationCreationDescriptions[name='allMapping']" domainClass="placer.Mapping" semanticCandidatesExpression="feature:mappings" headerLabelExpression="Mapping"/>
+      <ownedColumnMappings name="hardwareName" headerLabelExpression="Hardware Name" initialWidth="130" canEdit="aql:false" featureName="hardwareName" labelExpression="aql:self.hardwareName"/>
+      <ownedColumnMappings name="makespan" headerLabelExpression="Makespan" initialWidth="90" canEdit="aql:false" featureName="makespan" labelExpression="aql:self.makespan"/>
+      <ownedColumnMappings name="energy" headerLabelExpression="Energy" initialWidth="70" canEdit="aql:false" featureName="energy" labelExpression="aql:self.energy"/>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_4:SequenceDiagramDescription" name="Mapping" domainClass="placer.Mapping" enablePopupBars="true" endsOrdering="&lt;%fragment &amp;&amp; $eventEnds%>" instanceRolesOrdering="&lt;%lifeline%>">
+      <metamodel href="http://www.example.org/placer#/"/>
+      <defaultLayer name="Default">
+        <nodeMappings xsi:type="description_4:InstanceRoleMapping" name="processingElement" domainClass="placer.ProcessingElement">
+          <style xsi:type="style:SquareDescription" showIcon="false" labelPosition="node" resizeKind="NSEW">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+          </style>
+        </nodeMappings>
+      </defaultLayer>
+    </ownedRepresentations>
+    <ownedRepresentations xsi:type="description_4:SequenceDiagramDescription" name="cs" domainClass="placer.Mapping" enablePopupBars="true" endsOrdering="aql:self.taskMappings">
+      <defaultLayer name="Default">
+        <nodeMappings xsi:type="description_4:InstanceRoleMapping" name="c" domainClass="placer.TaskMapping">
+          <style xsi:type="style:SquareDescription" labelExpression="aql:self.task" labelPosition="node" resizeKind="NSEW">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+          </style>
+        </nodeMappings>
+      </defaultLayer>
+    </ownedRepresentations>
+    <ownedJavaExtensions qualifiedClassName="display.ConstraintsAndObjectiveDisplay"/>
+    <ownedJavaExtensions qualifiedClassName="display.HardwareClassDisplay"/>
+    <ownedJavaExtensions qualifiedClassName="display.HardwareDisplay"/>
+    <ownedJavaExtensions qualifiedClassName="display.SoftwareDisplay"/>
+    <ownedJavaExtensions qualifiedClassName="display.MappingDisplay"/>
+    <ownedJavaExtensions qualifiedClassName="json.BuilderOfJson"/>
+    <ownedJavaExtensions qualifiedClassName="validation.ConstraintsAndObjectiveValidation"/>
+    <ownedJavaExtensions qualifiedClassName="validation.HardwareClassValidation"/>
+    <ownedJavaExtensions qualifiedClassName="validation.HardwareValidation"/>
+    <ownedJavaExtensions qualifiedClassName="validation.SoftwareValidation"/>
+    <ownedJavaExtensions qualifiedClassName="validation.AllValidation"/>
+    <ownedJavaExtensions qualifiedClassName="json.DisplayMapping"/>
+  </ownedViewpoints>
+</description:Group>

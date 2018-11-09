@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+		<item value="formula" key="selection"/>
+		<item value="false" key="casesensitive"/>
+		<item value="true" key="incremental"/>
+		<item value="true" key="wrap"/>
+		<item value="false" key="wholeword"/>
+		<list key="findhistory">
+			<item value="formula"/>
+			<item value="GlobalProperties2"/>
+			<item value="directorySource"/>
+			<item value="connection"/>
+			<item value="syste"/>
+			<item value="implementation.getResourcesUsages().get(k)"/>
+			<item value="implementation.getParameters().get(k)"/>
+			<item value="task.getImplementations().get(j)"/>
+			<item value="taskGroup.getTaskTaskGroups().get(i)"/>
+			<item value="b"/>
+			<item value="global.getTaskGroups().get(a)"/>
+			<item value="global.getTasks().get(i)"/>
+			<item value="global.getBusses().get(i)"/>
+			<item value="glo"/>
+			<item value="replace"/>
+		</list>
+		<list key="replacehistory">
+			<item value="resourcesUsage"/>
+			<item value="parameters"/>
+			<item value="implementation"/>
+			<item value="task"/>
+			<item value="inst"/>
+			<item value="taskGroup"/>
+			<item value="bus"/>
+			<item value="processingElement"/>
+			<item value="processingElementClass"/>
+			<item value="newFolderString"/>
+			<item value="a"/>
+			<item value="Global"/>
+			<item value="tasks"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="336" key="DIALOG_WIDTH"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="454" key="DIALOG_HEIGHT"/>
+		<item value="1509" key="DIALOG_X_ORIGIN"/>
+		<item value="389" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>

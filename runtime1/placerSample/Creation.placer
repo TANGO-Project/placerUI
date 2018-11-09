@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="ASCII"?>
+<placer:Global xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:placer="http://www.example.org/placer" commandLineParameters="--timeLimit=5\r\n">
+  <powerCap powerCap="700"/>
+  <energyCap energyCap="500000"/>
+  <globalInformations information="representative_fictive_example" timeUnit="ms" dataUnit="bit"/>
+  <mappingGoals xsi:type="placer:MultiObjectiveGoal" simpleObjective="minMakespan" simpleObjective2="minEnergy"/>
+  <busses name="globalBus" timeUnitPerDataUnit="3" latency="1">
+    <connections connectionTo="//@processingElements.0" connectionFrom="//@busses.0"/>
+    <connections connectionTo="//@processingElements.1" connectionFrom="//@busses.0"/>
+    <connections connectionTo="//@processingElements.2" connectionFrom="//@busses.0"/>
+    <connections connectionTo="//@processingElements.3" connectionFrom="//@busses.0"/>
+  </busses>
+  <busses name="globalBus2" timeUnitPerDataUnit="4" latency="1">
+    <connections connectionTo="//@processingElements.0" connectionFrom="//@busses.1"/>
+    <connections connectionTo="//@processingElements.1" connectionFrom="//@busses.1"/>
+    <connections connectionTo="//@processingElements.2" connectionFrom="//@busses.1"/>
+    <connections connectionTo="//@processingElements.3" connectionFrom="//@busses.1"/>
+  </busses>
+  <busses name="busAToGPGPU" timeUnitPerDataUnit="1" latency="1">
+    <connections connectionTo="//@processingElements.1" connectionFrom="//@busses.2"/>
+    <connections connectionTo="//@processingElements.2" connectionFrom="//@busses.2"/>
+  </busses>
+  <busses name="busBToGPGPU" timeUnitPerDataUnit="2" latency="1">
+    <connections connectionTo="//@processingElements.3" connectionFrom="//@busses.3"/>
+    <connections connectionTo="//@processingElements.2" connectionFrom="//@busses.3"/>
+  </busses>
+  <busses name="busAToFPGA" timeUnitPerDataUnit="1" latency="3">
+    <connections connectionTo="//@processingElements.0" connectionFrom="//@busses.4"/>
+    <connections connectionTo="//@processingElements.1" connectionFrom="//@busses.4"/>
+  </busses>
+  <processingElements name="FPGA1" memory="1000" powerModel="frequency*frequency*(kgate+multiplier*20)/1000+2" class="//@processingElementClasses.0">
+    <resourcesDefinitions name="//@processingElementClasses.0/@resourcesDeclarations.0" value="110"/>
+    <resourcesDefinitions name="//@processingElementClasses.0/@resourcesDeclarations.1" value="500"/>
+    <propertiesDefinitions name="//@processingElementClasses.0/@propertiesDeclarations.0" value="100"/>
+  </processingElements>
+  <processingElements name="procA" memory="1000" powerModel="buzy*mflops*30+5" class="//@processingElementClasses.2">
+    <propertiesDefinitions name="//@processingElementClasses.2/@propertiesDeclarations.1" value="10"/>
+    <propertiesDefinitions name="//@processingElementClasses.2/@propertiesDeclarations.0" value="1000"/>
+  </processingElements>
+  <processingElements name="GPGPU1" memory="2000" powerModel="core*5+10" class="//@processingElementClasses.1">
+    <resourcesDefinitions name="//@processingElementClasses.1/@resourcesDeclarations.0" value="110"/>
+  </processingElements>
+  <processingElements name="procB" memory="1000" powerModel="buzy*mflops*20+1" class="//@processingElementClasses.2">
+    <propertiesDefinitions name="//@processingElementClasses.2/@propertiesDeclarations.1" value="6"/>
+    <propertiesDefinitions name="//@processingElementClasses.2/@propertiesDeclarations.0" value="100"/>
+  </processingElements>
+  <processingElementClasses xsi:type="placer:MultiTaskPermanentTasks" name="fpga">
+    <resourcesDeclarations name="kgate"/>
+    <resourcesDeclarations name="multiplier"/>
+    <propertiesDeclarations name="frequency"/>
+  </processingElementClasses>
+  <processingElementClasses xsi:type="placer:SwitchingTask" name="gpgpu" switchingDelay="1">
+    <resourcesDeclarations name="core"/>
+  </processingElementClasses>
+  <processingElementClasses xsi:type="placer:SwitchingTask" name="cpu" switchingDelay="1">
+    <propertiesDeclarations name="mips"/>
+    <propertiesDeclarations name="mflops"/>
+  </processingElementClasses>
+  <tasks name="inputting">
+    <transmissions from="//@tasks.0" to="//@tasks.2" amount="5" timing="Free"/>
+    <transmissions from="//@tasks.0" to="//@tasks.1" amount="50" timing="Free"/>
+    <implementations name="cpu_standard" duration="100/mflops+1000/mips" target="//@processingElementClasses.2" computationMemory="10"/>
+    <implementations name="fpga_standard" duration="100/frequency" target="//@processingElementClasses.0" computationMemory="100">
+      <resourcesUsages name="//@processingElementClasses.0/@resourcesDeclarations.0" formula="100"/>
+      <resourcesUsages name="//@processingElementClasses.0/@resourcesDeclarations.1" formula="30"/>
+    </implementations>
+  </tasks>
+  <tasks name="decoding">
+    <transmissions from="//@tasks.1" to="//@taskGroups.0/@taskTaskGroups.0" amount="2"/>
+    <implementations name="PI_cpu_supplier1" duration="100/mflops+1000000/mips" target="//@processingElementClasses.2" computationMemory="100"/>
+    <implementations name="PI_cpu_supplier2" duration="1000/mflops+10000/mips" target="//@processingElementClasses.2" computationMemory="10"/>
+    <implementations name="fpga_standard" duration="1000/frequency" target="//@processingElementClasses.0" computationMemory="10">
+      <resourcesUsages name="//@processingElementClasses.0/@resourcesDeclarations.0" formula="100"/>
+      <resourcesUsages name="//@processingElementClasses.0/@resourcesDeclarations.1" formula="20"/>
+    </implementations>
+    <implementations name="gpgpu_standard" duration="10" target="//@processingElementClasses.1" computationMemory="10">
+      <resourcesUsages name="//@processingElementClasses.1/@resourcesDeclarations.0" formula="100"/>
+    </implementations>
+  </tasks>
+  <tasks name="encoding">
+    <implementations name="cpu_standard" duration="100+100/mflops+1000/mips" target="//@processingElementClasses.2" computationMemory="10"/>
+    <implementations name="cpu_param" duration="100+100/mflops+1000/mips-10*toto" target="//@processingElementClasses.2" computationMemory="5*(toto+1)">
+      <parameters name="toto">
+        <value>0</value>
+        <value>1</value>
+        <value>2</value>
+      </parameters>
+    </implementations>
+  </tasks>
+  <tasks name="watermaking">
+    <transmissions from="//@tasks.3" to="//@tasks.2" amount="20"/>
+    <implementations name="cpu_standard" duration="100/mflops+1000/mips" target="//@processingElementClasses.2" computationMemory="0"/>
+    <implementations name="PI_fpga_supplier1" duration="100/frequency" target="//@processingElementClasses.0" computationMemory="10">
+      <resourcesUsages name="//@processingElementClasses.0/@resourcesDeclarations.0" formula="20"/>
+      <resourcesUsages name="//@processingElementClasses.0/@resourcesDeclarations.1" formula="30"/>
+    </implementations>
+    <implementations name="PI_fpga_supplier2" duration="101/frequency" target="//@processingElementClasses.0" computationMemory="10">
+      <resourcesUsages name="//@processingElementClasses.0/@resourcesDeclarations.0" formula="10"/>
+      <resourcesUsages name="//@processingElementClasses.0/@resourcesDeclarations.1" formula="35"/>
+    </implementations>
+    <implementations name="gpgpu_standard" duration="10" target="//@processingElementClasses.1" computationMemory="10">
+      <resourcesUsages name="//@processingElementClasses.1/@resourcesDeclarations.0" formula="100"/>
+    </implementations>
+  </tasks>
+  <taskGroups nbInstances="2">
+    <taskTaskGroups name="transforming">
+      <transmissions from="//@taskGroups.0/@taskTaskGroups.0" to="//@tasks.3" amount="2" timing="Alap"/>
+      <implementations name="cpu_standard" duration="110/mflops+1000/mips" target="//@processingElementClasses.2" computationMemory="10"/>
+      <implementations name="gpgpu_standard" duration="10" target="//@processingElementClasses.1" computationMemory="10">
+        <resourcesUsages name="//@processingElementClasses.1/@resourcesDeclarations.0" formula="1"/>
+      </implementations>
+    </taskTaskGroups>
+  </taskGroups>
+  <maxMakeSpan maxMakeSpan="500"/>
+  <globalProperties name="hardwaresize" value="4"/>
+  <mainPlacerOut1 info="representative_fictive_example" jsonFormat="PlacerBeta6Out" timeUnit="ms" dataUnit="bit" filePath="saveRuntimePlacerSample\save-2018.11.08-22.49.52">
+    <mappings hardwareName="Hardware1" makespan="189" energy="45952">
+      <taskMappings duration="11" end="11" processingElement="//@processingElements.1" implementation="//@tasks.0/@implementations.0" task="inputting"/>
+      <taskMappings start="62" duration="10" end="72" processingElement="//@processingElements.2" implementation="//@tasks.1/@implementations.3" task="decoding"/>
+      <taskMappings start="98" duration="91" end="189" processingElement="//@processingElements.1" implementation="//@tasks.2/@implementations.1" task="encoding">
+        <nameValues name="toto" value="2"/>
+      </taskMappings>
+      <taskMappings start="87" duration="11" end="98" processingElement="//@processingElements.1" implementation="//@tasks.3/@implementations.0" task="watermaking"/>
+      <taskMappings start="75" duration="12" end="87" processingElement="//@processingElements.1" implementation="//@taskGroups.0/@taskTaskGroups.0/@implementations.0" task="transforming[1]"/>
+      <taskMappings start="72" duration="10" end="82" processingElement="//@processingElements.2" implementation="//@taskGroups.0/@taskTaskGroups.0/@implementations.1" task="transforming[2]"/>
+      <transmissionMappings start="11" duration="51" end="62" bus="//@busses.2" transmission="inputtingTOdecoding" fromPE="//@processingElements.1" toPE="//@processingElements.2" fromTask="inputting" toTask="decoding"/>
+      <transmissionMappings start="72" duration="3" end="75" bus="//@busses.2" transmission="decodingTOtransforming[1]" fromPE="//@processingElements.2" toPE="//@processingElements.1" fromTask="decoding" toTask="transforming[1]"/>
+      <transmissionMappings start="84" duration="3" end="87" bus="//@busses.2" transmission="transforming[2]TOwatermaking" fromPE="//@processingElements.2" toPE="//@processingElements.1" fromTask="transforming[2]" toTask="watermaking"/>
+    </mappings>
+  </mainPlacerOut1>
+</placer:Global>

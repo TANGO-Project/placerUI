@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature id="fr.obeo.dsl.designer.ce.feature.source" version="11.0.0.201808281310" plugin="fr.obeo.dsl.designer" label="%featureName" provider-name="%providerName">
+  <includes id="fr.obeo.dsl.designer.ce.feature" version="11.0.0.201808281310"/>
+  <description url="http://www.obeodesigner.com/">
+      Obeo Designer Community 11.0.0
+   </description>
+  <copyright url="http://www.obeo.fr/legal-information">
+      Copyright (c) 2009, 2018 Obeo
+   </copyright>
+  <license url="%licenseURL">
+      %license
+   </license>
+  <plugin id="fr.obeo.dsl.designer.ce.source" version="11.0.0.201808281310" download-size="0" install-size="0" unpack="false"/>
+</feature>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ASCII"?>
+<placer:SoftwareModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:placer="http://www.example.org/placer" name="AZERT">
+  <tasks name="rege">
+    <transmissions from="//@tasks.0" to="//@tasks.1" name="czcz"/>
+    <implementations name="ytjtyj" duration="165">
+      <resourceUsage>[]</resourceUsage>
+      <resourceUsage>[[]]ktyu</resourceUsage>
+      <parameters>[]kukiy</parameters>
+      <target xsi:type="placer:SwitchingTask" href="HardwareClass.placer#//@processingElementClasses.1"/>
+    </implementations>
+  </tasks>
+  <tasks name="veve">
+    <implementations name="csqcscv"/>
+    <implementations name="fezfezf" duration="168">
+      <target xsi:type="placer:SwitchingTask" href="HardwareClass.placer#//@processingElementClasses.1"/>
+    </implementations>
+    <implementations name="w&lt;QSDBN"/>
+    <implementations name="dcds"/>
+  </tasks>
+</placer:SoftwareModel>

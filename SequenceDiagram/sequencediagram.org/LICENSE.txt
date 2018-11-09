@@ -1,0 +1,31 @@
+Copyright (c) SequenceDiagram.org
+
+The Licensee is granted, free of charge, to use the Software for the purpose
+of publishing the Software's output to the Licensee and third parties, subject
+to the following conditions:
+
+Access to the Software shall not be offered as a service by the Licensee to
+any third party.
+
+The Licensee will not copy, sell, redistribute, license, sublicense, or
+otherwise transfer the Software to any third party.
+
+The Licensee will not modify the Software.
+
+The Software is provided "as is" without warranty of any kind. Authors or
+copyright holders shall under no event be held liable for costs, damages,
+expenses, claim, or other liability.
+
+Parts of the software are provided under separate licenses:
+There is no license for the SequenceDiagram.org syntax, everybody can use it
+Font Awesome is licensed under the MIT license.
+Fonts used in the Software's output provided by the Licensee, including the
+default font, are subject to their own licenses.
+Material Design Icons from the Community is licensed under the SIL Open Font
+License, Version 1.1.
+Material Design icons by Google (included in materialdesignicons.com
+collection) is licensed under the Apache License, Version 2.0.
+lz-string is licensed under the DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE.
+Canvas2Svg is licensed under the MIT license.
+CodeMirror is licensed under the MIT license.
+RBush is licensed under the MIT license.

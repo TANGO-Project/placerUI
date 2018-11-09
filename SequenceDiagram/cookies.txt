@@ -1,0 +1,4 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+.sequencediagram.org	TRUE	/	FALSE	1999999999	__cfduid	d247c21c5e9bf6c1cbe5649133f6e9d961541693396
+

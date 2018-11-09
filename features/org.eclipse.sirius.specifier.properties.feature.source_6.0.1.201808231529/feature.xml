@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature id="org.eclipse.sirius.specifier.properties.feature.source" version="6.0.1.201808231529" label="%featureName" provider-name="%providerName">
+  <includes id="org.eclipse.sirius.specifier.properties.feature" version="6.0.1.201808231529"/>
+  <description url="http://www.eclipse.org/sirius">
+      Specifier support for Sirius property views definition.
+   </description>
+  <copyright>
+      %copyright
+   </copyright>
+  <license url="%licenseURL">
+      %license
+   </license>
+  <plugin id="org.eclipse.sirius.editor.properties.source" version="6.0.1.201808231529" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.sirius.properties.defaultrules.source" version="6.0.1.201808231529" download-size="0" install-size="0" unpack="false"/>
+</feature>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ASCII"?>
+<placer:MetaModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:placer="http://www.example.org/placer">
+  <processingElementClasses xsi:type="placer:MultiTaskPermanentTasks" name="a">
+    <resources>ergrge</resources>
+    <properties>greg</properties>
+  </processingElementClasses>
+  <processingElementClasses xsi:type="placer:SwitchingTask" name="bf" switchingDelay="78">
+    <resources>fqe</resources>
+    <properties>fqsdfq</properties>
+    <properties>fgrgr</properties>
+  </processingElementClasses>
+  <processingElementClasses xsi:type="placer:MultiTaskPermanentTasks" name="ht">
+    <resources>fsd</resources>
+  </processingElementClasses>
+  <processingElementClasses xsi:type="placer:MultiTaskPermanentTasks">
+    <resources>fxrafx</resources>
+    <resources>rezf</resources>
+  </processingElementClasses>
+  <processingElementClasses xsi:type="placer:SwitchingTask">
+    <resources>efez,gefr</resources>
+  </processingElementClasses>
+  <processingElementClasses xsi:type="placer:MultiTaskPermanentTasks" name="vd"/>
+  <processingElementClasses xsi:type="placer:SwitchingTask" name="gre" switchingDelay="7">
+    <resources>[]</resources>
+    <properties>[]efezr</properties>
+  </processingElementClasses>
+  <processingElementClasses xsi:type="placer:MultiTaskPermanentTasks"/>
+  <processingElementClasses xsi:type="placer:SwitchingTask">
+    <resources>[sdfzf, r&quot;]</resources>
+  </processingElementClasses>
+</placer:MetaModel>

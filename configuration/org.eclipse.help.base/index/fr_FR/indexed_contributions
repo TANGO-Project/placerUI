@@ -1,0 +1,33 @@
+#This is a generated file; do not edit.
+#Fri Oct 26 10:25:26 CEST 2018
+org.eclipse.emf.cheatsheets=org.eclipse.emf.cheatsheets\n2.7.0.v20180125-1130
+org.eclipse.gef.doc.isv=org.eclipse.gef.doc.isv\n3.11.0.201606061308
+org.eclipse.emf.doc=org.eclipse.emf.doc\n2.11.0.v20180123-1048
+org.eclipse.eef.documentation.javadoc=org.eclipse.eef.documentation.javadoc\n2.1.0.201805131837
+org.eclipse.help.base=org.eclipse.help.base\n4.2.200.v20180611-0500
+org.eclipse.eef.documentation.ext.widgets.reference=org.eclipse.eef.documentation.ext.widgets.reference\n2.1.0.201805131837
+org.eclipse.draw2d.doc.isv=org.eclipse.draw2d.doc.isv\n3.10.100.201606061308
+org.eclipse.epp.mpc.ui=org.eclipse.epp.mpc.ui\n1.7.0.v20180607-0001
+org.eclipse.sirius.doc=org.eclipse.sirius.doc\n6.0.1.201808231529
+org.eclipse.jdt=org.eclipse.jdt\n3.14.0.v20180611-0500
+org.eclipse.acceleo.query.doc=org.eclipse.acceleo.query.doc\n6.0.4.201807201001
+org.eclipse.jdt.doc.user=org.eclipse.jdt.doc.user\n3.14.0.v20180605-1207
+fr.obeo.dsl.designer.ce=fr.obeo.dsl.designer.ce\n11.0.0.201808281310
+org.eclipse.sirius.eef.adapters=org.eclipse.sirius.eef.adapters\n6.0.1.201808231529
+org.eclipse.egit.doc=org.eclipse.egit.doc\n5.0.0.201806131550-r
+org.eclipse.emf.compare.doc=org.eclipse.emf.compare.doc\n3.3.0.201805161152
+org.eclipse.jdt.doc.isv=org.eclipse.jdt.doc.isv\n3.14.0.v20180611-0826
+org.eclipse.ui.cheatsheets=org.eclipse.ui.cheatsheets\n3.5.200.v20180418-0908
+org.eclipse.emf.ecoretools.doc=org.eclipse.emf.ecoretools.doc\n3.3.0.201706121316
+org.eclipse.eef.documentation=org.eclipse.eef.documentation\n2.1.0.201805131837
+org.eclipse.acceleo.ide.ui=org.eclipse.acceleo.ide.ui\n3.7.4.201807201001
+org.eclipse.ui.intro=org.eclipse.ui.intro\n3.5.200.v20180328-0550
+org.eclipse.help=org.eclipse.help\n3.8.100.v20180512-1136
+org.eclipse.platform.doc.isv=org.eclipse.platform.doc.isv\n4.8.0.v20180611-0826
+org.eclipse.swtbot.eclipse.ui=org.eclipse.swtbot.eclipse.ui\n2.7.0.201806111355
+org.eclipse.epp.mpc.help.ui=org.eclipse.epp.mpc.help.ui\n1.7.0.v20180606-2225
+org.eclipse.pde.doc.user=org.eclipse.pde.doc.user\n3.13.100.v20180611-0826
+org.eclipse.platform=org.eclipse.platform\n4.8.0.v20180611-0500
+org.eclipse.pde=org.eclipse.pde\n3.13.100.v20180611-0500
+org.eclipse.platform.doc.user=org.eclipse.platform.doc.user\n4.8.0.v20180531-1055
+org.eclipse.ui.intro.universal=org.eclipse.ui.intro.universal\n3.3.200.v20180418-0908

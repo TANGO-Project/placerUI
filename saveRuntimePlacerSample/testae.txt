@@ -1,0 +1,22 @@
+title Mapping-Hardware1
+
+participant procA
+participant GPGPU1
+
+box over procA :  task : inputting\n implementation : cpu_standard\n start : 0\n duration : 11\n end : 11\n
+
+procA->GPGPU1 :  transmission : inputtingTOdecoding\n bus : busAToGPGPU\n start : 11\n duration : 51\n end : 62\n
+
+box over GPGPU1 :  task : decoding\n implementation : gpgpu_standard\n start : 62\n duration : 10\n end : 72\n
+
+GPGPU1->procA :  transmission : decodingTOtransforming[1]\n bus : busAToGPGPU\n start : 72\n duration : 3\n end : 75\n
+
+box over GPGPU1 :  task : transforming[2]\n implementation : gpgpu_standard\n start : 72\n duration : 10\n end : 82\n
+
+box over procA :  task : transforming[1]\n implementation : cpu_standard\n start : 75\n duration : 12\n end : 87\n
+
+GPGPU1->procA :  transmission : transforming[2]TOwatermaking\n bus : busAToGPGPU\n start : 84\n duration : 3\n end : 87\n
+
+box over procA :  task : watermaking\n implementation : cpu_standard\n start : 87\n duration : 11\n end : 98\n
+
+box over procA :  task : encoding\n implementation : cpu_param\n start : 98\n duration : 91\n end : 189\n

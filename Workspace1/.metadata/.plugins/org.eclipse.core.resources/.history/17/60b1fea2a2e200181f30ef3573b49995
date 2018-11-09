@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/placer/src-gen" creationIcons="false" editDirectory="/placer.edit/src-gen"
+    editorDirectory="/placer.editor/src-gen" modelPluginID="placer" modelName="Placer"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>placer.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="Placer" disposableProviderFactory="true" ecorePackage="placer.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="placer.ecore#//TimingObject">
+      <genEnumLiterals ecoreEnumLiteral="placer.ecore#//TimingObject/Asap"/>
+      <genEnumLiterals ecoreEnumLiteral="placer.ecore#//TimingObject/Alap"/>
+      <genEnumLiterals ecoreEnumLiteral="placer.ecore#//TimingObject/Sticky"/>
+      <genEnumLiterals ecoreEnumLiteral="placer.ecore#//TimingObject/Free"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="placer.ecore#//SimpleGoal">
+      <genEnumLiterals ecoreEnumLiteral="placer.ecore#//SimpleGoal/minMakespan"/>
+      <genEnumLiterals ecoreEnumLiteral="placer.ecore#//SimpleGoal/minEnergy"/>
+      <genEnumLiterals ecoreEnumLiteral="placer.ecore#//SimpleGoal/minFrame"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="placer.ecore#//SoftwareClass">
+      <genEnumLiterals ecoreEnumLiteral="placer.ecore#//SoftwareClass/oneShotSoftware"/>
+      <genEnumLiterals ecoreEnumLiteral="placer.ecore#//SoftwareClass/iterative"/>
+    </genEnums>
+    <genClasses ecoreClass="placer.ecore#//Task">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//Task/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//Task/transmissions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//Task/implementations"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//Transmission">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference placer.ecore#//Transmission/from"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference placer.ecore#//Transmission/to"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//Transmission/amount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//Transmission/timing"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//ProcessingElementClass">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//ProcessingElementClass/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//ProcessingElementClass/resourcesDeclarations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//ProcessingElementClass/propertiesDeclarations"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//MultiTaskPermanentTasks"/>
+    <genClasses ecoreClass="placer.ecore#//SwitchingTask">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//SwitchingTask/switchingDelay"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//Bus">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//Bus/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//Bus/timeUnitPerDataUnit"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//Bus/latency"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//Bus/connections"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//ProcessingElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//ProcessingElement/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//ProcessingElement/memory"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//ProcessingElement/powerModel"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference placer.ecore#//ProcessingElement/class"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//ProcessingElement/resourcesDefinitions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//ProcessingElement/propertiesDefinitions"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//Implementation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//Implementation/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//Implementation/duration"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference placer.ecore#//Implementation/target"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//Implementation/computationMemory"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//Implementation/parameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//Implementation/resourcesUsages"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//Connection">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference placer.ecore#//Connection/connectionTo"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference placer.ecore#//Connection/connectionFrom"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//ConstraintOrObjective">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//ConstraintOrObjective/info"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//SamePE">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//SamePE/yes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference placer.ecore#//SamePE/taskSamePE"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//EnergyCap">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//EnergyCap/energyCap"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//RunOn">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//RunOn/yes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference placer.ecore#//RunOn/processingElementRunOn"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference placer.ecore#//RunOn/taskRunOn"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//PowerCap">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//PowerCap/powerCap"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//SymetricPE">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference placer.ecore#//SymetricPE/processingElementSymetricPE"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//MustBeUsed">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//MustBeUsed/yes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference placer.ecore#//MustBeUsed/processingElementMustBeUsed"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//MappingGoal">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//MappingGoal/simpleObjective"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//GlobalInformation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//GlobalInformation/information"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//GlobalInformation/timeUnit"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//GlobalInformation/dataUnit"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//MultiObjectiveGoal">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//MultiObjectiveGoal/simpleObjective2"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//SimpleObjectiveGoal"/>
+    <genClasses ecoreClass="placer.ecore#//TaskGroup">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//TaskGroup/nbInstances"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//TaskGroup/taskTaskGroups"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//Global">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//Global/constraintOrObjectives"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//Global/powerCap"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//Global/energyCap"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//Global/globalInformations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//Global/mappingGoals"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//Global/busses"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//Global/processingElements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//Global/processingElementClasses"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//Global/tasks"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//Global/taskGroups"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//Global/maxMakeSpan"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//Global/softwareClass"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//Global/globalProperties"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//Global/commandLineParameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//Global/mainPlacerOut1"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//MaxMakeSpan">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//MaxMakeSpan/maxMakeSpan"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//ResourcesDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//ResourcesDeclaration/name"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//PropertiesDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//PropertiesDeclaration/name"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//Parameters">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//Parameters/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//Parameters/value"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//ResourcesDefinition">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference placer.ecore#//ResourcesDefinition/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//ResourcesDefinition/value"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//PropertiesDefinition">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference placer.ecore#//PropertiesDefinition/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//PropertiesDefinition/value"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//ResourcesUsage">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference placer.ecore#//ResourcesUsage/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//ResourcesUsage/formula"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//GlobalProperties">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//GlobalProperties/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//GlobalProperties/value"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//TaskMapping">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//TaskMapping/start"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//TaskMapping/duration"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//TaskMapping/end"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//TaskMapping/nameValues"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference placer.ecore#//TaskMapping/processingElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference placer.ecore#//TaskMapping/implementation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//TaskMapping/task"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//Mapping">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//Mapping/hardwareName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//Mapping/makespan"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//Mapping/energy"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//Mapping/taskMappings"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//Mapping/sharedFunctionMappings"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//Mapping/transmissionMappings"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//SharedFunctionMapping">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//SharedFunctionMapping/sharedImplem"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//SharedFunctionMapping/nbInstance"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//SharedFunctionMapping/host"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//SharedFunctionMapping/nameValues"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//NameValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//NameValue/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//NameValue/value"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//MainPlacerOut">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//MainPlacerOut/info"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//MainPlacerOut/jsonFormat"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//MainPlacerOut/timeUnit"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//MainPlacerOut/dataUnit"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference placer.ecore#//MainPlacerOut/mappings"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//TransmissionMapping">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//TransmissionMapping/start"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//TransmissionMapping/duration"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//TransmissionMapping/end"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference placer.ecore#//TransmissionMapping/bus"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute placer.ecore#//TransmissionMapping/transmission"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference placer.ecore#//TransmissionMapping/fromPE"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference placer.ecore#//TransmissionMapping/toPE"/>
+    </genClasses>
+    <genClasses ecoreClass="placer.ecore#//NewEClass37"/>
+  </genPackages>
+</genmodel:GenModel>
